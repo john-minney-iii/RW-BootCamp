@@ -18,14 +18,9 @@ class MainActivity : AppCompatActivity() {
         private val TAG = MainActivity::class.java.simpleName
         private const val NAME_KEY = "NAME_KEY"
         private const val REPO_LINK = "https://github.com/Ex0dus19/RW-BootCamp"
+        private val band = RandomBand()
 
     }
-
-    private val bands = setOf<String>(
-        "AJR", "NSP", "Starbomb", "Def Leppard", "Twenty-One Pilots", "Zach Williams"
-    )
-
-    lateinit var bandName: String
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
@@ -38,16 +33,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState != null) {
-            bandName = savedInstanceState.getString(NAME_KEY).toString()
-            bandName_textView.text = bandName
-            setBandPicture()
+            band.name = savedInstanceState.getString(NAME_KEY).toString()
+            bandName_textView.text = band.name
+        }else {
+            createBand()
         }
 
         getBand_button.setOnClickListener {
-            setBandName()
-            setBandPicture()
+            createBand()
         }
 
+    }
+
+    private fun createBand() {
+        band.refreshBand()
+        bandName_textView.text = band.name.toString()
+        band_logo.setImageResource(band.pictureId)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -74,9 +75,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        bandName = bandName_textView.text.toString()
-        outState.putString(NAME_KEY, bandName)
-        Log.d(TAG, "Saving bandName: $bandName.")
+        band.name = bandName_textView.text.toString()
+        outState.putString(NAME_KEY, band.name)
+        Log.d(TAG, "Saving bandName: ${band.name}.")
     }
 
     override fun onDestroy() {
@@ -84,23 +85,5 @@ class MainActivity : AppCompatActivity() {
         Log.d(TAG, "onDestroy called.")
     }
 
-    private fun setBandPicture() {
-        band_logo.setImageResource(
-            when (bandName_textView.text.toString()) {
-                "AJR" -> R.drawable.ajr_logo
-                "NSP" -> R.drawable.nsp_logo
-                "Starbomb" -> R.drawable.starbomb_logo
-                "Def Leppard" -> R.drawable.def_leppard_logo
-                "Twenty-One Pilots" -> R.drawable.top_logo
-                "Zach Williams" -> R.drawable.zach_williams_logo
-                else -> R.drawable.image_placeholder
-            }
-        )
-    }
-
-    private fun setBandName()  {
-        bandName_textView.text = bands.random().toString()
-        Log.d(TAG, "Band Name: ${bandName_textView.text.toString()}")
-    }
 
 }
