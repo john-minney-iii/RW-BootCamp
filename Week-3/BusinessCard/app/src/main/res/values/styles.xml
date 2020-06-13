@@ -7,4 +7,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="InfoText" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:padding">@dimen/info_padding</item>
+        <item name="android:textSize">@dimen/info_text_size</item>
+    </style>
+
 </resources>

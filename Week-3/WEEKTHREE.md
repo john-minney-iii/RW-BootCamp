@@ -21,6 +21,6 @@ Assignment is to create a Business/Calling Card
 "Extra Credit":
 	- [x] Menu to show Autho and Build Version
 	- [x] 'Share' Option in Menu?
-	- [ ] Uses style
+	- [x] Uses style
 	- [ ] Button Animation
 	- [ ] Material Design components?

@@ -36,30 +36,24 @@
 
         <TextView
             android:id="@+id/email_textView"
+            style="@style/InfoText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/info_padding"
-            android:text="@string/email"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/info_text_size" />
+            android:text="@string/email" />
 
         <TextView
             android:id="@+id/phoneNumber_textView"
+            style="@style/InfoText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/info_padding"
-            android:text="@string/phoneN"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/info_text_size" />
+            android:text="@string/phoneN" />
 
         <TextView
             android:id="@+id/location_textView"
+            style="@style/InfoText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/info_padding"
-            android:text="@string/location"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/info_text_size" />
+            android:text="@string/location" />
     </LinearLayout>
 
     <LinearLayout
