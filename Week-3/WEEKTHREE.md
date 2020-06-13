@@ -19,8 +19,8 @@ Assignment is to create a Business/Calling Card
 	- The repo and PR requests are done correctly
 
 "Extra Credit":
-	- [ ] Menu to show Autho and Build Version
-	- [ ] 'Share' Option in Menu?
+	- [x] Menu to show Autho and Build Version
+	- [x] 'Share' Option in Menu?
 	- [ ] Uses style
 	- [ ] Button Animation
 	- [ ] Material Design components?
