@@ -1,10 +1,14 @@
 package com.minneydev.businesscard
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -55,7 +59,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun shareRepo() {
-        TODO("Not yet implemented")
+        val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("REPO LINK", REPO_LINK)
+        clipboard.setPrimaryClip(clip)
+        Toast.makeText(this, getString(R.string.copy_message), Toast.LENGTH_LONG).show()
     }
 
     private fun showAboutInfo() {
