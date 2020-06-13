@@ -3,10 +3,10 @@ Assignment is to create a Business/Calling Card
 - [x] Must have an image
 - [x] Must have contact info
 	- Name, location, email, phone number
-- [ ] Must have a button that does "something"
+- [x] Must have a button that does "something"
 
 
-- Make sure the app can display correctly in both portrait & landscape
+- [x] Make sure the app can display correctly in both portrait & landscape
 - Don't hard code values (string, color, dimens, ext)
 
 - Grading Criteria:
@@ -18,4 +18,9 @@ Assignment is to create a Business/Calling Card
 	- App includes an image
 	- The repo and PR requests are done correctly
 
-
+"Extra Credit":
+	- [ ] Menu to show Autho and Build Version
+	- [ ] 'Share' Option in Menu?
+	- [ ] Uses style
+	- [ ] Button Animation
+	- [ ] Material Design components?

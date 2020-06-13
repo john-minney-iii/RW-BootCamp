@@ -11,4 +11,10 @@
     <string name="band_name">Get a Random Band Name!</string>
     <string name="band_logo">Random Band Logo</string>
 
+    <string name="about">About</string>
+    <string name="about_title">Business Card %s</string>
+    <string name="about_message">Created by John Minney III</string>
+
+    <string name="share">Share</string>
+
 </resources>

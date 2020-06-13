@@ -2,18 +2,19 @@ package com.minneydev.businesscard
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
-import android.widget.Button
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.properties.Delegates
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
         private val TAG = MainActivity::class.java.simpleName
         private const val NAME_KEY = "NAME_KEY"
-        private const val LOGO_KEY = "LOGO_KEY"
+        private const val REPO_LINK = "https://github.com/Ex0dus19/RW-BootCamp"
+
     }
 
     private val bands = setOf<String>(
@@ -21,6 +22,12 @@ class MainActivity : AppCompatActivity() {
     )
 
     lateinit var bandName: String
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +44,25 @@ class MainActivity : AppCompatActivity() {
             setBandPicture()
         }
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.about_item -> { showAboutInfo() }
+            R.id.share_item -> { shareRepo() }
+        }
+        return true
+    }
+
+    private fun shareRepo() {
+        TODO("Not yet implemented")
+    }
+
+    private fun showAboutInfo() {
+        val dialogTitle = getString(R.string.about_title, BuildConfig.VERSION_NAME)
+        val dialogMessage = getString(R.string.about_message)
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(dialogTitle).setMessage(dialogMessage).create().show()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
