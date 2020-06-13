@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState != null) {
             band.name = savedInstanceState.getString(NAME_KEY).toString()
             bandName_textView.text = band.name
+            band_logo.setImageResource(band.pictureId)
         }else {
             createBand()
         }
