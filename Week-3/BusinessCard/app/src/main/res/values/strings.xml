@@ -16,6 +16,6 @@
     <string name="about_message">Created by John Minney III</string>
 
     <string name="share">Share</string>
-    <string name="copy_message">Project Repo Copied on Clipboard</string>
+    <string name="copy_message">Project Repo Copied to Clipboard</string>
 
 </resources>

@@ -28,6 +28,7 @@ open class MainActivity : AppCompatActivity() {
         if (savedInstanceState != null) {
             band.name = savedInstanceState.getString(NAME_KEY).toString()
             bandName_textView.text = band.name
+            getPicture()
         }else {
             createBand()
         }
@@ -73,6 +74,10 @@ open class MainActivity : AppCompatActivity() {
         private fun createBand() {
             band.refreshBand()
             bandName_textView.text = band.name
+            getPicture()
+        }
+
+        private fun getPicture() {
             Picasso.get()
                 .load(band.getImageUrl())
                 .resize(200,200)
