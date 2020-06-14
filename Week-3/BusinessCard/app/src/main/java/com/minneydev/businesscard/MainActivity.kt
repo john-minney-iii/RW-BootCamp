@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.squareup.picasso.Picasso
@@ -33,7 +34,10 @@ open class MainActivity : AppCompatActivity() {
             createBand()
         }
 
-        getBand_button.setOnClickListener {
+        getBand_button.setOnClickListener { v ->
+            val bounceAnimation = AnimationUtils.loadAnimation(this,
+                R.anim.bounce)
+            v.startAnimation(bounceAnimation)
             createBand()
         }
 
@@ -81,6 +85,7 @@ open class MainActivity : AppCompatActivity() {
             Picasso.get()
                 .load(band.getImageUrl())
                 .resize(200,200)
+                .placeholder(R.drawable.image_placeholder)
                 .into(band_logo)
         }
 
