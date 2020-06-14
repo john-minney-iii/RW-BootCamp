@@ -10,12 +10,13 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 
 open class MainActivity : AppCompatActivity() {
 
     companion object {
-        private val TAG = MainActivity::class.java.simpleName
+        val TAG = MainActivity::class.java.simpleName
         private const val NAME_KEY = "NAME_KEY"
         const val REPO_LINK = "https://github.com/Ex0dus19/RW-BootCamp"
         private val band = RandomBand()
@@ -24,11 +25,9 @@ open class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         if (savedInstanceState != null) {
             band.name = savedInstanceState.getString(NAME_KEY).toString()
             bandName_textView.text = band.name
-            band_logo.setImageResource(band.pictureId)
         }else {
             createBand()
         }
@@ -39,7 +38,8 @@ open class MainActivity : AppCompatActivity() {
 
     }
 
-    // Saved Instance Functions --------------------------------------------------------------------
+    //--------------------------------------------------------------------------------------------
+
         override fun onSaveInstanceState(outState: Bundle) {
             super.onSaveInstanceState(outState)
             band.name = bandName_textView.text.toString()
@@ -52,7 +52,8 @@ open class MainActivity : AppCompatActivity() {
             Log.d(TAG, "onDestroy called.")
         }
 
-    // Menu Functions ------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------
+
         override fun onCreateOptionsMenu(menu: Menu?): Boolean {
             super.onCreateOptionsMenu(menu)
             menuInflater.inflate(R.menu.menu, menu)
@@ -67,10 +68,20 @@ open class MainActivity : AppCompatActivity() {
             return true
         }
 
-    // Functions -----------------------------------------------------------------------------------
+     //---------------------------------------------------------------------------------------------
+
+        private fun createBand() {
+            band.refreshBand()
+            bandName_textView.text = band.name
+            Picasso.get()
+                .load(band.getImageUrl())
+                .resize(200,200)
+                .into(band_logo)
+        }
+
         private fun shareRepo() {
             val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText("REPO LINK", MainActivity.REPO_LINK)
+            val clip = ClipData.newPlainText("REPO LINK", REPO_LINK)
             clipboard.setPrimaryClip(clip)
             Toast.makeText(this, getString(R.string.copy_message), Toast.LENGTH_LONG).show()
         }
@@ -82,9 +93,4 @@ open class MainActivity : AppCompatActivity() {
             builder.setTitle(dialogTitle).setMessage(dialogMessage).create().show()
         }
 
-        private fun createBand() {
-            band.refreshBand()
-            bandName_textView.text = band.name.toString()
-            band_logo.setImageResource(band.pictureId)
-        }
 }
