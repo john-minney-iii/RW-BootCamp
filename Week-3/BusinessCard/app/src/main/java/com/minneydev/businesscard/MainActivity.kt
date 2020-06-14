@@ -26,6 +26,7 @@ open class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         if (savedInstanceState != null) {
             band.name = savedInstanceState.getString(NAME_KEY).toString()
             bandName_textView.text = band.name
@@ -40,7 +41,6 @@ open class MainActivity : AppCompatActivity() {
             v.startAnimation(bounceAnimation)
             createBand()
         }
-
     }
 
     //--------------------------------------------------------------------------------------------

@@ -6,12 +6,13 @@ class RandomBand {
         "AJR", "NSP", "Starbomb", "Def Leppard", "Twenty-One Pilots", "Zach Williams",
         "American Authors", "Avicii", "Big Daddy Weave", "Boston", "I Fight Dragons",
         "Imagine Dragons", "Journey", "Caravan Palace", "Casting Crowns", "GameChops"
-
-
     )
 
     var name: String = ""
-    init { refreshBand() }
+
+    init {
+        refreshBand()
+    }
 
     //Some of the URLs go over that 'format line'. I feel like cutting them off just for a small bit
     //Makes it even harder to read. So i just cut the longest one and called it good.
