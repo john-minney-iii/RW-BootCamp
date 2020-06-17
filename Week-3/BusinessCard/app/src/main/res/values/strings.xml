@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Business Card</string>
+
+    <string name="main_logo_description">Business Card Logo</string>
+    <string name="name">Name: John Minney III</string>
+    <string name="location">Location: Greeley, Colorado, USA</string>
+    <string name="email">Email: jminneyiii@gmail.com</string>
+    <string name="phoneN">Phone Number: 970-555-9517</string>
+
+    <string name="button">Get a New Band!</string>
+    <string name="band_name">Get a Random Band Name!</string>
+    <string name="band_logo">Random Band Logo</string>
+
+    <string name="about">About</string>
+    <string name="about_title">Business Card %s</string>
+    <string name="about_message">Created by John Minney III</string>
+
+    <string name="share">Share</string>
+    <string name="copy_message">Project Repo Copied to Clipboard</string>
+
+</resources>
