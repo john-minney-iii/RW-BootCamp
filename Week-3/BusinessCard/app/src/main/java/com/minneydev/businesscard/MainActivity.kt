@@ -14,7 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_main.*
 
-open class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
 
     companion object {
         val TAG = MainActivity::class.java.simpleName
@@ -49,12 +49,10 @@ open class MainActivity : AppCompatActivity() {
             super.onSaveInstanceState(outState)
             band.name = bandName_textView.text.toString()
             outState.putString(NAME_KEY, band.name)
-            Log.d(TAG, "Saving bandName: ${band.name}.")
         }
 
         override fun onDestroy() {
             super.onDestroy()
-            Log.d(TAG, "onDestroy called.")
         }
 
     //-------------------------------------------------------------------------------------------
