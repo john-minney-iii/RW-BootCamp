@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.minneydev.movieapp.ui.MainAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
-//A few of the movies Jen put in hers are some of my favorites lol. I promise I didn't cheat
+//A few of the movies Jen put in her's are some of my favorites lol.
 
 class MainActivity : AppCompatActivity() {
 
