@@ -1,10 +1,7 @@
 # RW-Bootcamp-2020
 RW Weekly Challenges
 
-I really missed up the first git repo, and I wasn't sure how to fix it. So a clean start it is. Here is the link to the original if you still want to look at that one.
-https://github.com/Ex0dus19/RW-Bootcamp-2020
-
-
+When merging branches to Master I choose to squash commits . To see individual commits, look in closed Pull Requests. 
 
 --------------------------------------------------------------------
 Name: John Minney III
