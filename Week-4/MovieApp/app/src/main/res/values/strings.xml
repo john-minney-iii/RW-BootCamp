@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Movie App</string>
+    <string name="poster">Movie Poster</string>
+    <string name="placeholder">Place Holder</string>
 </resources>
