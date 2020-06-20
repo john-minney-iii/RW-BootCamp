@@ -8,10 +8,12 @@ data class Movie(
     val releaseDate: String,
     val title: String,
     val summary: String,
-    var posterUrl: String = "") : Parcelable {
+    var posterUrl: String = "",
+    var bannerUrl: String = "") : Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
+        parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
@@ -24,6 +26,7 @@ data class Movie(
         dest.writeString(title)
         dest.writeString(summary)
         dest.writeString(posterUrl)
+        dest.writeString(bannerUrl)
     }
 
     override fun describeContents() = 0

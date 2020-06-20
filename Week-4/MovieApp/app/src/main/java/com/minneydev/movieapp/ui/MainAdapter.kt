@@ -8,7 +8,7 @@ import com.minneydev.movieapp.data.Movie
 import com.minneydev.movieapp.data.MovieData
 import com.squareup.picasso.Picasso
 
-class MainAdapter(val clickListener: MovieClickListener) : RecyclerView.Adapter<MainViewHolder>() {
+class MainAdapter(private val clickListener: MovieClickListener) : RecyclerView.Adapter<MainViewHolder>() {
 
     interface MovieClickListener {
         fun movieClicked(movie: Movie)

@@ -11,7 +11,9 @@ open class MovieData() {
                 "Override, has been banned from touching a keyboard for seven years after " +
                 "crashing over 1,500 Wall Street computers at the age of 11. Now keen to get back " +
                 "in front of a monitor, he finds himself in more trouble than ever.",
-        posterUrl = "https://fffmovieposters.com/wp-content/uploads/69090.jpg"
+        posterUrl = "https://fffmovieposters.com/wp-content/uploads/69090.jpg",
+        bannerUrl = "https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248" +
+                ",w_2220/v1555434797/shape/mentalfloss/5749847986.png?itok=s5yuvi4c"
     )
 
     val warGames = Movie(
@@ -25,7 +27,9 @@ open class MovieData() {
                 "as the Soviet Union. Once the clueless hacker comes to his senses, Lightman, " +
                 "with help from his girlfriend, must find a way to alert the " +
                 "authorities to stop the onset of World War III.",
-        posterUrl = "https://i5.walmartimages.com/asr/76aa356c-458d-489b-a7b1-489e73c85cfb_1.2188c20155f7a2077724d3ffaf93cf19.jpeg"
+        posterUrl = "https://i5.walmartimages.com/asr/76aa356c-458d-489b-a7b1-489e73c85cfb_1.2188c20155f7a2077724d3ffaf93cf19.jpeg",
+        bannerUrl = "https://images2.minutemediacdn.com/image/upload/c_crop,h_1213,w_2156,x_0," +
+                "y_0/v1554924448/shape/mentalfloss/545667-mgm.jpg?itok=Ke-kN91t"
     )
 
     val sandlot = Movie(
@@ -36,7 +40,12 @@ open class MovieData() {
                 "to make friends with a group of kids who play baseball at the sandlot. Together " +
                 "they go on a series of funny and touching adventures. The boys run into trouble " +
                 "when Smalls borrows a ball from his stepdad that gets hit over a fence.",
-        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/71spjhASbtL._AC_SY879_.jpg"
+        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/71spjhASbtL._AC_SY879_.jpg",
+        bannerUrl = "https://images.squarespace-cdn.com/content/v1/597511866a49636e8766bd14" +
+                "/1509069295653-T20OHLEHURRZJ7C6DPF0/ke17ZwdGBToddI8pDm48kKdcgyxGj0ADSTxS8M" +
+                "xb8skUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYxCRW4B" +
+                "Pu10St3TBAUQYVKcwljGhHu4faD5-6dG7w960f6YMZojgecQ6i_BotoLnjx2cImEn0zhFQP0bs" +
+                "70CkuW/sandlot-cast.jpg"
     )
 
     val bttf = Movie(
@@ -49,7 +58,9 @@ open class MovieData() {
                 "modified DeLorean car, Marty encounters young versions of his parents, and " +
                 "must make sure that they fall in love or he'll cease to exist. Even more " +
                 "dauntingly, Marty has to return to his own time and save the life of Doc Brown.",
-        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/51FgX0ONoML._AC_.jpg"
+        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/51FgX0ONoML._AC_.jpg",
+        bannerUrl = "https://img1.looper.com/img/gallery/small-details-in-the-back-to-the" +
+                "-future-movies-you-missed/intro-1588353204.jpg"
     )
 
     val tnes = Movie(
@@ -63,7 +74,12 @@ open class MovieData() {
                 "touches. The kingdom needs the help of a human child to survive. When Bastian " +
                 "reads a description of himself in the book, he begins to wonder if Fantasia is " +
                 "real and needs him to survive.",
-        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/51IullvU8gL._AC_.jpg"
+        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/51IullvU8gL._AC_.jpg",
+        bannerUrl = "https://images.squarespace-cdn.com/content/v1/51b3dc8ee4b051b96ceb10de/" +
+                "1477075915684-W28L8JXWRXLLJF61MCL3/ke17ZwdGBToddI8pDm48kNvT88LknE" +
+                "-K9M4pGNO0Iqd7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z" +
+                "5QPOohDIaIeljMHgDF5CVlOqpeNLcJ80NK65_fV7S1USOFn4xF8vTWDNAUBm5ducQhX-V3oVjSmr" +
+                "829Rco4W2Uo49ZdOtO_QXox0_W7i2zEA/image-asset.jpeg?format=2500w"
     )
 
     val lotr = Movie(
@@ -76,7 +92,9 @@ open class MovieData() {
                 "Frodo Baggins, who inherits the Ring and steps into legend. A " +
                 "daunting task lies ahead for Frodo when he becomes the Ringbearer - to destroy " +
                 "the One Ring in the fires of Mount Doom where it was forged.",
-        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/51MpUFlkuFL._AC_.jpg"
+        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/51MpUFlkuFL._AC_.jpg",
+        bannerUrl = "https://www.denofgeek.com/wp-content/uploads/2014/12/lord-of-the" +
+                "-rings-greatest-moments.jpg?fit=1920%2C1080"
     )
 
     val tsn = Movie(
@@ -90,7 +108,10 @@ open class MovieData() {
                 "legal complications when he ends up on the receiving end of two lawsuits, one " +
                 "involving his former friend. Based on the book " +
                 "\"The Accidental Billionaires.\"",
-        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/518zV7F39qL._AC_.jpg"
+        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/518zV7F39qL._AC_.jpg",
+        bannerUrl = "https://img.thedailybeast.com/image/upload/c_crop,d_placeholder_" +
+                "euli9k,h_1687,w_3000,x_0,y_0/dpr_1.5/c_limit,w_1600/fl_lossy,q_auto" +
+                "/v1577427760/191224-hitt-social-network-tease_swnxbc"
     )
 
     val fbdo = Movie(
@@ -102,7 +123,8 @@ open class MovieData() {
                 "\"borrows\" a Ferrari, and embarks on a one-day journey through the streets of " +
                 "Chicago. On Ferris' trail is high school principal Rooney (Jeffrey Jones), " +
                 "determined to catch him in the act.",
-        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/81ZQOcEnGDL._AC_SY606_.jpg"
+        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/81ZQOcEnGDL._AC_SY606_.jpg",
+        bannerUrl = "https://i.pinimg.com/originals/85/a3/a7/85a3a70b373cd0e091ab17e6f9923fb8.jpg"
     )
 
     val rpo = Movie(
@@ -116,7 +138,8 @@ open class MovieData() {
                 "the OASIS. When young Wade Watts joins the contest, he finds himself becoming " +
                 "an unlikely hero in a reality-bending treasure hunt through a fantastical world " +
                 "of mystery, discovery and danger.",
-        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/71NaQGqIhAL._AC_SY679_.jpg"
+        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/71NaQGqIhAL._AC_SY679_.jpg",
+        bannerUrl = "https://www.journal-topics.com/wp-content/uploads/2018/04/ready-player-one.jpg"
     )
 
     val theDirt = Movie(
@@ -125,7 +148,9 @@ open class MovieData() {
         title = "The Dirt",
         summary = "The misfits of Mötley Crüe rise from the streets of Hollywood to the heights " +
                 "of international fame in the 1980s.",
-        posterUrl = "https://i.ebayimg.com/images/g/8nMAAOSw-6BclDUV/s-l300.jpg"
+        posterUrl = "https://i.ebayimg.com/images/g/8nMAAOSw-6BclDUV/s-l300.jpg",
+        bannerUrl = "https://cdn.theatlantic.com/thumbor/mvPal8A-YdLXWTejQSR177TXf-g=/0x187" +
+                ":3600x2212/720x405/media/img/mt/2019/03/Dirt_Unit_0001/original.jpg"
     )
 
     val gnd = Movie(
@@ -135,7 +160,8 @@ open class MovieData() {
         summary = "After he refuses to disavow his faith, a devout Christian student " +
                 "must prove the existence of God or else his college philosophy professor " +
                 "will fail him.",
-        posterUrl = "https://collegian.com/wp-content/uploads/2014/09/gods_not_dead_xlg.jpg"
+        posterUrl = "https://collegian.com/wp-content/uploads/2014/09/gods_not_dead_xlg.jpg",
+        bannerUrl = "https://cdn1.thr.com/sites/default/files/2014/03/god_a.jpg"
     )
 
     val pobw = Movie(
@@ -149,7 +175,8 @@ open class MovieData() {
                 "teacher sparks Charlie's dreams of becoming a writer. However, as his new friends " +
                 "prepare to leave for college, Charlie's inner sadness threatens to shatter " +
                 "his newfound confidence.",
-        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/51VnN-M3ljL._AC_.jpg"
+        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/51VnN-M3ljL._AC_.jpg",
+        bannerUrl = "https://the-perks.weebly.com/uploads/1/8/6/4/18648204/8067941_orig.jpeg"
     )
 
     val spiderman = Movie(
@@ -163,7 +190,9 @@ open class MovieData() {
                 "to be more than just a friendly neighborhood superhero. Peter must soon put his " +
                 "powers to the test when the evil Vulture emerges to threaten everything that " +
                 "he holds dear.",
-        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/A1CcbJfKqJL._AC_SY606_.jpg"
+        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/A1CcbJfKqJL._AC_SY606_.jpg",
+        bannerUrl = "https://imgix.bustle.com/uploads/image/2017/7/5/c2eece34-69f3-470e-9389" +
+                "-a1c086224a59-screen-shot-2017-07-05-at-65143-am.png"
     )
 
     val gotg = Movie(
@@ -177,7 +206,10 @@ open class MovieData() {
                 "enigmatic Gamora, and vengeance-driven Drax the Destroyer. But when he discovers " +
                 "the orb's true power and the cosmic threat it poses, Quill must rally his " +
                 "ragtag group to save the universe.",
-        posterUrl = "https://www.gstatic.com/tv/thumb/v22vodart/10108283/p10108283_v_v8_aj.jpg"
+        posterUrl = "https://www.gstatic.com/tv/thumb/v22vodart/10108283/p10108283_v_v8_aj.jpg",
+        bannerUrl = "https://cdn.vox-cdn.com/thumbor/pxt2gyz1VYLiI-pZcLSUyogfP7s=/244x0" +
+                ":1789x1159/1200x800/filters:focal(244x0:1789x1159)/cdn.vox-cdn.com/uploads" +
+                "/chorus_image/image/36355928/guardians.0.jpg"
     )
 
     fun getMoviesArray() : Array<Movie> {
