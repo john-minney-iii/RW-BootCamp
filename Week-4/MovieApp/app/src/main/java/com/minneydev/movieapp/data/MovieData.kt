@@ -193,5 +193,5 @@ open class MovieData() {
             return temp.getMoviesArray()
         }
     }
-    
+
 }

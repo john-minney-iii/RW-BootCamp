@@ -8,7 +8,11 @@ import com.minneydev.movieapp.data.Movie
 import com.minneydev.movieapp.data.MovieData
 import com.squareup.picasso.Picasso
 
-class MainAdapter : RecyclerView.Adapter<MainViewHolder>() {
+class MainAdapter(val clickListener: MovieClickListener) : RecyclerView.Adapter<MainViewHolder>() {
+
+    interface MovieClickListener {
+        fun movieClicked(movie: Movie)
+    }
 
     private val movies: Array<Movie> = MovieData.getMovies()
 
@@ -29,6 +33,9 @@ class MainAdapter : RecyclerView.Adapter<MainViewHolder>() {
             .placeholder(R.drawable.image_placeholder)
             .resize(339,500)
             .into(holder.moviePoster)
+        holder.itemView.setOnClickListener {
+            clickListener.movieClicked(movies[position])
+        }
     }
 
 }
