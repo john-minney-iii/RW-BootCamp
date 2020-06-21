@@ -17,5 +17,6 @@
 
     <dimen name="card_e">0dp</dimen>
     <dimen name="card_r">15dp</dimen>
+    <dimen name="card_main_r">10dp</dimen>
 
 </resources>

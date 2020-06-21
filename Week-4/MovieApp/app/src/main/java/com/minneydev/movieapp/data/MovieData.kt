@@ -226,10 +226,27 @@ open class MovieData() {
         imdb = "https://www.imdb.com/title/tt2015381/"
     )
 
+    val pixels = Movie(
+        id = 114,
+        releaseDate = "July 24, 2015",
+        title = "Pixels",
+        summary = "When aliens intercept video feeds of classic arcade games and misinterpret " +
+                "them as a declaration of war, they attack Earth, using the games as models. " +
+                "Knowing that he must employ a similar strategy, President Will Cooper " +
+                "recruits his childhood pal, former video-game champ and " +
+                "home-theater installer Sam Brenner, to lead a team of " +
+                "old-school arcade players and a military specialist " +
+                "in an all-out battle to save the planet.",
+        posterUrl = "https://lh3.googleusercontent.com/proxy/0pjoZav8qwb9g5IfHxc0ZDtxmQ-" +
+                "_nRnYb4l4S2VV0zpBaCuwjXLZsurmM1DfGYRslltBjAsAO-E1VYmQzv-6-K81cKcLDcnf9VWl6VB5GQLY",
+        bannerUrl = "https://i.ytimg.com/vi/kiL6pLaFucs/maxresdefault.jpg",
+        imdb = "https://www.imdb.com/title/tt2120120/"
+    )
+
     fun getMoviesArray() : Array<Movie> {
         return arrayOf<Movie>(
             hackers, warGames, sandlot, bttf, tnes, lotr, tsn, fbdo, rpo, theDirt, gnd,
-            grownUps, spiderman, gotg
+            grownUps, spiderman, gotg, pixels
         )
     }
 
