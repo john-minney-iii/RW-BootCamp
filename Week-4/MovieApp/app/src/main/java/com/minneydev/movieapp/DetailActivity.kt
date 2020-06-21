@@ -1,5 +1,7 @@
 package com.minneydev.movieapp
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +24,12 @@ class DetailActivity : AppCompatActivity() {
 
         detailRecyclerView.layoutManager = LinearLayoutManager(this)
         detailRecyclerView.adapter = DetailAdapter()
+
+        searchMovieFab.setOnClickListener {
+            val openUrl = Intent(android.content.Intent.ACTION_VIEW)
+            openUrl.data = Uri.parse(movie?.imdb)
+            startActivity(openUrl)
+        }
 
     }
 
