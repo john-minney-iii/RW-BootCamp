@@ -175,20 +175,20 @@ open class MovieData() {
         imdb = "https://www.imdb.com/title/tt2528814/"
     )
 
-    val pobw = Movie(
+    val grownUps = Movie(
         id = 111,
-        releaseDate = "September 21, 2012",
-        title = "The Perks of Being a Wallflower",
-        summary = "Socially awkward teen Charlie is a wallflower, always watching " +
-                "life from the sidelines, until two charismatic students become his mentors. " +
-                "Free-spirited Sam and her stepbrother Patrick help " +
-                "Charlie discover the joys of friendship, first love, music and more, while a " +
-                "teacher sparks Charlie's dreams of becoming a writer. However, as his new friends " +
-                "prepare to leave for college, Charlie's inner sadness threatens to shatter " +
-                "his newfound confidence.",
-        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/51VnN-M3ljL._AC_.jpg",
-        bannerUrl = "https://the-perks.weebly.com/uploads/1/8/6/4/18648204/8067941_orig.jpeg",
-        imdb = "https://www.imdb.com/title/tt1659337/"
+        releaseDate = "June 25, 2010",
+        title = "Grown Ups",
+        summary = "A single man who drinks too much. A father with three daughters who he " +
+                "rarely sees. A guy who is overweight and unemployed. A hen-pecked househusband. " +
+                "A successful Hollywood agent married to a fashion designer. What do these " +
+                "five men have in common? They used to play for the same basketball team at " +
+                "school. Now their former coach has died, and they are reunited at his funeral. " +
+                "Will the group rediscover old bonds?",
+        posterUrl = "https://images-na.ssl-images-amazon.com/images/I/51HcBKjeLGL._AC_.jpg",
+        bannerUrl = "https://media.npr.org/assets/artslife/movies/2010/06/grown-ups/rock-james" +
+                "-spade-sandler_wide-db9843d629490fd662531e7266b7c2322e4227f1-s800-c85.jpg",
+        imdb = "https://www.imdb.com/title/tt1375670/"
     )
 
     val spiderman = Movie(
@@ -229,7 +229,7 @@ open class MovieData() {
     fun getMoviesArray() : Array<Movie> {
         return arrayOf<Movie>(
             hackers, warGames, sandlot, bttf, tnes, lotr, tsn, fbdo, rpo, theDirt, gnd,
-            pobw, spiderman, gotg
+            grownUps, spiderman, gotg
         )
     }
 
