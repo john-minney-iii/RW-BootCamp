@@ -3,6 +3,9 @@ package com.minneydev.movieapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.GridLayoutManager
 import com.minneydev.movieapp.data.Movie
 import com.minneydev.movieapp.ui.MainAdapter
@@ -28,7 +31,6 @@ class MainActivity : AppCompatActivity(), MainAdapter.MovieClickListener {
         mainRecyclerView.setOnClickListener {
 
         }
-
     }
 
     private fun showMovieDetail(movie: Movie) {
@@ -40,4 +42,25 @@ class MainActivity : AppCompatActivity(), MainAdapter.MovieClickListener {
     override fun movieClicked(movie: Movie) {
         showMovieDetail(movie)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.about, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.aboutMenu) {
+            showInfo()
+        }
+        return true
+    }
+
+    private fun showInfo() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.alert_title)
+            .setMessage(R.string.alert_message)
+            .create().show()
+    }
+
 }
