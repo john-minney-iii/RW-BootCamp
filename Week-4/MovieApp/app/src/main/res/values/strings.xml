@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Movie App</string>
+    <string name="poster">Movie Poster</string>
+    <string name="placeholder">Place Holder</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="about">About</string>
+
+    <string name="banner_descrip">Movie Banner</string>
+
+    <string name="summary">Summary</string>
+
+    <string name="alert_title">Movie App</string>
+    <string name="alert_message">Created by John Minney III</string>
+
+</resources>
