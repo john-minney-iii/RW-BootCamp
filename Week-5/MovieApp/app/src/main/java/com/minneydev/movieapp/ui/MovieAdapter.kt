@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.minneydev.movieapp.R
 import com.minneydev.movieapp.data.Movie
 import com.minneydev.movieapp.data.getMoviesArray
-import com.squareup.picasso.Picasso
 
 class MovieAdapter(private val clickListener: MovieClickListener) : RecyclerView.Adapter<MovieViewHolder>() {
 
@@ -14,7 +13,7 @@ class MovieAdapter(private val clickListener: MovieClickListener) : RecyclerView
         fun movieClicked(movie: Movie)
     }
 
-    private val movies: Array<Movie> = getMoviesArray()
+    private val movies: List<Movie> = getMoviesArray()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context)

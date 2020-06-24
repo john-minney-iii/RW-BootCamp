@@ -4,11 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.minneydev.movieapp.DetailActivity
+import com.minneydev.movieapp.DetailFragment
 import com.minneydev.movieapp.R
 
 class DetailAdapter : RecyclerView.Adapter<DetailViewHolder>() {
 
-    private val currentMovie = DetailActivity.movie
+    private val currentMovie = DetailFragment.movie
 
     private val movieInfo = arrayOf(
         Pair("Summary", currentMovie?.summary),

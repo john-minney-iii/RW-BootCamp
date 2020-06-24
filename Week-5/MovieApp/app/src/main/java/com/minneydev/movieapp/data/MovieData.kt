@@ -242,8 +242,8 @@ val pixels = Movie(
     imdb = "https://www.imdb.com/title/tt2120120/"
 )
 
-fun getMoviesArray() : Array<Movie> {
-    return arrayOf<Movie>(
+fun getMoviesArray() : List<Movie> {
+    return listOf<Movie>(
         hackers, warGames, sandlot, bttf, tnes, lotr, tsn, fbdo, rpo, theDirt, gnd,
         grownUps, spiderman, gotg, pixels
     )
