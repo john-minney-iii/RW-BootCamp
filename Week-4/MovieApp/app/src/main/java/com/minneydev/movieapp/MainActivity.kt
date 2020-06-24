@@ -8,12 +8,12 @@ import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.GridLayoutManager
 import com.minneydev.movieapp.data.Movie
-import com.minneydev.movieapp.ui.MainAdapter
+import com.minneydev.movieapp.ui.MovieAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 //A few of the movies Jen put in her's are some of my favorites lol.
 
-class MainActivity : AppCompatActivity(), MainAdapter.MovieClickListener {
+class MainActivity : AppCompatActivity(), MovieAdapter.MovieClickListener {
 
     companion object {
         const val INTENT_MOVIE_KEY = "movie"
@@ -26,17 +26,14 @@ class MainActivity : AppCompatActivity(), MainAdapter.MovieClickListener {
         setContentView(R.layout.activity_main)
 
         mainRecyclerView.layoutManager = GridLayoutManager(this, spanCount)
-        mainRecyclerView.adapter = MainAdapter(this)
+        mainRecyclerView.adapter = MovieAdapter(this)
 
-        mainRecyclerView.setOnClickListener {
-
-        }
     }
 
     private fun showMovieDetail(movie: Movie) {
-        val intent = Intent(this, DetailActivity::class.java)
-        intent.putExtra(INTENT_MOVIE_KEY, movie)
-        startActivity(intent)
+        Intent(this, DetailActivity::class.java)
+            .apply { putExtra(INTENT_MOVIE_KEY, movie) }
+            .run { startActivity(this) }
     }
 
     override fun movieClicked(movie: Movie) {

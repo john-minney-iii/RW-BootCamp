@@ -24,8 +24,8 @@ class DetailAdapter : RecyclerView.Adapter<DetailViewHolder>() {
     override fun getItemCount() : Int  = movieInfo.size
 
     override fun onBindViewHolder(holder: DetailViewHolder, position: Int) {
-        holder.title.text = movieInfo[position].first
-        holder.message.text = movieInfo[position].second
+        holder.bind(movieInfo[position].first,  movieInfo[position].second)
+
     }
 
 }

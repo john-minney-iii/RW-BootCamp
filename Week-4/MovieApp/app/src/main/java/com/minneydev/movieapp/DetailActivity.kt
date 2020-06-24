@@ -19,21 +19,21 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        movie = intent.getParcelableExtra<Movie>(MainActivity.INTENT_MOVIE_KEY)
-        initActivity(movie)
+        movie = intent.getParcelableExtra(MainActivity.INTENT_MOVIE_KEY)
+        displayMovie(movie)
 
         detailRecyclerView.layoutManager = LinearLayoutManager(this)
         detailRecyclerView.adapter = DetailAdapter()
 
         searchMovieFab.setOnClickListener {
-            val openUrl = Intent(android.content.Intent.ACTION_VIEW)
-            openUrl.data = Uri.parse(movie?.imdb)
-            startActivity(openUrl)
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(movie?.imdb)
+            startActivity(intent)
         }
 
     }
 
-    private fun initActivity(movie: Movie?) {
+    private fun displayMovie(movie: Movie?) {
         if (movie != null) {
             title = movie.title
             cardTitle.text = movie.title

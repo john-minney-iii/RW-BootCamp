@@ -8,4 +8,9 @@ import com.minneydev.movieapp.R
 class DetailViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val title = view.findViewById<TextView>(R.id.cardTitle)
     val message = view.findViewById<TextView>(R.id.cardMessage)
+
+    fun bind(t: String?, m: String?) {
+        title.text = t
+        message.text = m
+    }
 }
