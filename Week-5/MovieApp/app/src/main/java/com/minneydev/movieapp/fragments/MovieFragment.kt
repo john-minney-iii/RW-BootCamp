@@ -1,4 +1,4 @@
-package com.minneydev.movieapp
+package com.minneydev.movieapp.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.minneydev.movieapp.R
 import com.minneydev.movieapp.data.Movie
 import com.minneydev.movieapp.ui.MovieAdapter
 import kotlinx.android.synthetic.main.fragment_movie.*
@@ -18,11 +19,6 @@ class MovieFragment : Fragment(), MovieAdapter.MovieClickListener {
 
     override fun movieClicked(movie: Movie) {
         showMovieDetail(movie)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -39,46 +35,14 @@ class MovieFragment : Fragment(), MovieAdapter.MovieClickListener {
         mainRecyclerView.adapter = MovieAdapter(this)
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-    }
-
     private fun showMovieDetail(movie: Movie) {
         view?.let {
-            val action = MovieFragmentDirections.actionMovieFragmentToDetailFragment(movie.title)
+            val action =
+                MovieFragmentDirections.actionMovieFragmentToDetailFragment(
+                    movie.title
+                )
             it.findNavController().navigate(action)
         }
     }
 
-    interface OnFragmentInteractionListener {
-        fun onMovieClicked(movie: Movie)
-    }
-
-    companion object {
-        fun newInstance(): MovieFragment {
-            return MovieFragment()
-        }
-    }
 }
-
-/*
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        super.onCreateOptionsMenu(menu)
-        menuInflater.inflate(R.menu.about, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.aboutMenu) {
-            showInfo()
-        }
-        return true
-    }
-
-    private fun showInfo() {
-        AlertDialog.Builder(this)
-            .setTitle(R.string.alert_title)
-            .setMessage(R.string.alert_message)
-            .create().show()
-    }
- */

@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/movieFragment"
-        android:name="com.minneydev.movieapp.MovieFragment"
+        android:name="com.minneydev.movieapp.fragments.MovieFragment"
         android:label="MovieFragment" >
         <action
             android:id="@+id/action_movieFragment_to_detailFragment"
@@ -13,7 +13,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.minneydev.movieapp.DetailFragment"
+        android:name="com.minneydev.movieapp.fragments.DetailFragment"
         android:label="DetailFragment" >
         <argument
             android:name="movie_string"
