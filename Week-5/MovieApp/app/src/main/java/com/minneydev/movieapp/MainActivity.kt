@@ -17,12 +17,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
-        menuInflater.inflate(R.menu.about, menu)
+        menuInflater.inflate(R.menu.app_menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.aboutMenu) {
+        when (item.itemId) {
+            R.id.about -> { showInfo() }
+            R.id.logOut -> { logOut() }
+        }
+
+        if (item.itemId == R.id.about) {
             showInfo()
         }
         return true
@@ -33,6 +38,10 @@ class MainActivity : AppCompatActivity() {
             .setTitle(R.string.alert_title)
             .setMessage(R.string.alert_message)
             .create().show()
+    }
+
+    private fun logOut() {
+        println("Add Logout Later")
     }
 
 

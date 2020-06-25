@@ -4,6 +4,7 @@
     <string name="placeholder">Place Holder</string>
     <string name="title_activity_detail">DetailActivity</string>
     <string name="about">About</string>
+    <string name="log_out">Log Out</string>
 
     <string name="banner_descrip">Movie Banner</string>
 
@@ -13,5 +14,12 @@
     <string name="alert_message">Created by John Minney III</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Login Screen -->
+
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Log In</string>
+    <string name="register_text_view">Don\'t have an Account? Create One!</string>
 
 </resources>

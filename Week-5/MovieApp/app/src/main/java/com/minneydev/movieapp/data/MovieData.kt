@@ -72,7 +72,7 @@ val tnes = Movie(
     title = "The Never Ending Story",
     summary = "On his way to school, Bastian ducks into a bookstore to avoid " +
             "bullies. Sneaking away with a book called \"The Neverending Story,\" Bastian " +
-            "begins reading it in the school attic. The novel is about Fantasia, a fantasy " +
+            "begins reading it in the school attic. The novel is app_menu Fantasia, a fantasy " +
             "land threatened by \"The Nothing,\" a darkness that destroys everything it " +
             "touches. The kingdom needs the help of a human child to survive. When Bastian " +
             "reads a description of himself in the book, he begins to wonder if Fantasia is " +
