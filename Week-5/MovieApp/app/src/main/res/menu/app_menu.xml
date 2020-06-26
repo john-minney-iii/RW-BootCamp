@@ -7,6 +7,9 @@
         android:title="@string/about"
         android:visible="true" />
     <item
+        android:id="@+id/aboutAccount"
+        android:title="@string/about_account" />
+    <item
         android:id="@+id/logOut"
         android:title="@string/log_out"
         app:showAsAction="never" />

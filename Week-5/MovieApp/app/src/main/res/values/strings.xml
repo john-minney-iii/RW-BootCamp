@@ -5,6 +5,9 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="about">About</string>
     <string name="log_out">Log Out</string>
+    <string name="about_account">My Account</string>
+    <string name="account_title">Your Account</string>
+    <string name="account_message">Email: %s, Password: %s</string>
 
     <string name="banner_descrip">Movie Banner</string>
 
@@ -12,8 +15,6 @@
 
     <string name="alert_title">Movie App</string>
     <string name="alert_message">Created by John Minney III</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Login Screen -->
 
@@ -21,5 +22,9 @@
     <string name="password">Password</string>
     <string name="login">Log In</string>
     <string name="register_text_view">Don\'t have an Account? Create One!</string>
+
+    <string name="failed_login_title">Failed Login</string>
+    <string name="failed_login_message">Email or Password Doesn\'t Meet Standards.
+                                        Please Try Again</string>
 
 </resources>

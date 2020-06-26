@@ -19,7 +19,7 @@
     <dimen name="card_r">15dp</dimen>
     <dimen name="card_main_r">10dp</dimen>
 
-    <!-- Login Screen -->
+    <!-- Login Screen Port -->
     <dimen name="logo_size">100dp</dimen>
     <dimen name="logo_top_margin">100dp</dimen>
 
@@ -30,5 +30,6 @@
     <dimen name="login_btn_top_margin">40dp</dimen>
 
     <dimen name="reg_text_view_top_margin">20dp</dimen>
+
 
 </resources>

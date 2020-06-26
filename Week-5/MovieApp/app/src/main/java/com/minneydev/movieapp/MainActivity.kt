@@ -6,13 +6,24 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.Navigation
+import com.minneydev.movieapp.data.User
+import com.minneydev.movieapp.manager.UserDataManager
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var currentUser: User
+
+    val dataManager = UserDataManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Navigation.findNavController(this, R.id.nav_host_fragment)
+
+        dataManager.readUserData()?.let {
+            currentUser = it
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -25,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.about -> { showInfo() }
             R.id.logOut -> { logOut() }
+            R.id.aboutAccount -> { showAccount() }
         }
 
         if (item.itemId == R.id.about) {
@@ -42,6 +54,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun logOut() {
         println("Add Logout Later")
+    }
+
+    private fun showAccount() {
+        val tempString = getString(R.string.account_message,
+            currentUser.email, currentUser.password
+        )
+        AlertDialog.Builder(this)
+            .setTitle(R.string.account_title)
+            .setMessage(tempString)
+            .create().show()
     }
 
 

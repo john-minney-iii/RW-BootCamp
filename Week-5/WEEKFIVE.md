@@ -1,6 +1,6 @@
 Expand on Week-4 Homework
 
-- Add a Login Screen
+- [x] Add a Login Screen
 	- Basic Validation for Username/password
 	- When logged in have the app go the 'main' screen (sharedPref)
 	- Allow user to log out
