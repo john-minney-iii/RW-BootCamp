@@ -53,7 +53,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun logOut() {
-        println("Add Logout Later")
+        dataManager.deleteUserData()
+        Navigation.findNavController(this, R.id.nav_host_fragment)
+            .navigate(R.id.logInFragment)
     }
 
     private fun showAccount() {
@@ -65,6 +67,7 @@ class MainActivity : AppCompatActivity() {
             .setMessage(tempString)
             .create().show()
     }
+
 
 
 

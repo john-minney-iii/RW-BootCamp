@@ -8,20 +8,17 @@ import com.minneydev.movieapp.data.User
 class UserDataManager(private val context: Context) {
 
     fun saveUserData(email: String, password: String, isLoggedIn: Boolean) {
-        val sharedPrefs =
-            PreferenceManager.getDefaultSharedPreferences(context).edit()
-        sharedPrefs.putString("email", email)
-        sharedPrefs.putString("password", password)
-        sharedPrefs.putBoolean("isLoggedIn", isLoggedIn)
-        sharedPrefs.apply()
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+            .putString("email", email)
+            .putString("password", password)
+            .putBoolean("isLoggedIn", isLoggedIn)
+            .apply()
         Log.d("SAVE", "$email saved")
 
     }
 
     fun readUserData(): User? {
-        val sharedPrefs =
-            PreferenceManager.getDefaultSharedPreferences(context)
-        val contents = sharedPrefs.all
+        val contents = PreferenceManager.getDefaultSharedPreferences(context).all
         return contents["isLoggedIn"]?.let {
             User(email = contents["email"].toString(),
                 password = contents["password"].toString(),
@@ -31,6 +28,7 @@ class UserDataManager(private val context: Context) {
     }
 
     fun deleteUserData() {
-        TODO("Implement Later")
+        PreferenceManager.getDefaultSharedPreferences(context)
+            .edit().clear().apply()
     }
 }
