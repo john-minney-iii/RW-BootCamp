@@ -27,7 +27,6 @@ class LogInFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_log_in, container, false)
     }
 
@@ -47,11 +46,6 @@ class LogInFragment : Fragment() {
         super.onAttach(context)
         userDataManager = UserDataManager(context)
 
-    }
-
-    companion object {
-        fun newInstance() =
-            LogInFragment().apply {}
     }
 
     private fun validateLogin() {

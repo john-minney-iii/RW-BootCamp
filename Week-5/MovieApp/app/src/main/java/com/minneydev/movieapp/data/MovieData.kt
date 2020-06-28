@@ -242,10 +242,21 @@ val pixels = Movie(
     imdb = "https://www.imdb.com/title/tt2120120/"
 )
 
+val theOffice = Movie(
+    id = 115,
+    releaseDate = "Idk Dude",
+    title = "The Office",
+    summary = "This is a Summary",
+    posterUrl = "https://upload.wikimedia.org/wikipedia/en/thumb/5/58/TheOffice_S7_DVD.jpg/250px-TheOffice_S7_DVD.jpg",
+    bannerUrl = "https://img1.looper.com/img/gallery/small-details-in-the-back-to-the" +
+            "-future-movies-you-missed/intro-1588353204.jpg",
+    imdb = "https://www.imdb.com/title/tt0088763/"
+)
+
 fun getMoviesArray() : List<Movie> {
     return listOf<Movie>(
         hackers, warGames, sandlot, bttf, tnes, lotr, tsn, fbdo, rpo, theDirt, gnd,
-        grownUps, spiderman, gotg, pixels
+        grownUps, spiderman, gotg, pixels, theOffice
     )
 }
 

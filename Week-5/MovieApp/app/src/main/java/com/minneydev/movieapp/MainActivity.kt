@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var currentUser: User
 
-    val dataManager = UserDataManager(this)
+    private val dataManager = UserDataManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
