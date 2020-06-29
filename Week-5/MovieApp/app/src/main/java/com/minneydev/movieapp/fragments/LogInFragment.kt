@@ -34,7 +34,7 @@ class  LogInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         userDataManager.readUserData()?.let {
-            if (it.isLoggedIn) goToMainScreen()
+            if (it.isLoggedIn) { goToMainScreen() }
         }
 
         loginBtn.setOnClickListener {
@@ -50,20 +50,19 @@ class  LogInFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         userDataManager = UserDataManager(context)
-
     }
 
     private fun validateLogin() {
         val email = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
-        if (email.length > 9 && password.length > 3) { pass(email, password) }
+        val sharedUser = userDataManager.readUserData()
+        if (email == sharedUser?.email && password == sharedUser.password) { pass() }
         else { fail() }
     }
 
-    private fun pass(email: String, password: String) {
-        Log.d("SAVE", "Pass with $email and $password")
-        saveUser(email, password, true)
+    private fun pass() {
         goToMainScreen()
+        userDataManager.userLoggedIn()
     }
 
     private fun fail() {
@@ -89,9 +88,9 @@ class  LogInFragment : Fragment() {
         }
     }
 
-    private fun saveUser(email: String, password: String, isLoggedIn: Boolean) {
-        userDataManager.saveUserData(email, password, isLoggedIn)
-    }
+//    private fun saveUser(email: String, password: String, isLoggedIn: Boolean) {
+//        userDataManager.saveUserData(email, password, isLoggedIn)
+//    }
 
 
 }

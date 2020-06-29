@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun logOut() {
-        dataManager.deleteUserData()
+        dataManager.logOutUser()
         Navigation.findNavController(this, R.id.nav_host_fragment)
             .navigate(R.id.logInFragment)
     }

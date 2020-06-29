@@ -27,8 +27,18 @@ class UserDataManager(private val context: Context) {
         }
     }
 
+    fun logOutUser() {
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+            .putBoolean("isLoggedIn", false).apply()
+    }
+
     fun deleteUserData() {
         PreferenceManager.getDefaultSharedPreferences(context)
             .edit().clear().apply()
+    }
+
+    fun userLoggedIn() {
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+            .putBoolean("isLoggedIn", true).apply()
     }
 }
