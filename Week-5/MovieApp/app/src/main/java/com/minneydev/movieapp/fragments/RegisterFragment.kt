@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.minneydev.movieapp.R
 import com.minneydev.movieapp.manager.UserDataManager
-import kotlinx.android.synthetic.main.fragment_log_in.*
 import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.fragment_register.emailEditText
 import kotlinx.android.synthetic.main.fragment_register.passwordEditText

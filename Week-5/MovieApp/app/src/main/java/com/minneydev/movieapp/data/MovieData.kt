@@ -236,8 +236,7 @@ val pixels = Movie(
             "home-theater installer Sam Brenner, to lead a team of " +
             "old-school arcade players and a military specialist " +
             "in an all-out battle to save the planet.",
-    posterUrl = "https://lh3.googleusercontent.com/proxy/mz8sPl-Ly0HV46qzaBprymL7ripEkgr0m2uBf" +
-            "kL4NoRs4K31Y1QipkU002tfIVjtRs7LTiLp626J-c8BnMeO72f7byOEIURg_rZEjSNEfAYA",
+    posterUrl = "https://images-na.ssl-images-amazon.com/images/I/51MLqr%2BPyML._AC_.jpg",
     bannerUrl = "https://i.ytimg.com/vi/kiL6pLaFucs/maxresdefault.jpg",
     imdb = "https://www.imdb.com/title/tt2120120/"
 )
