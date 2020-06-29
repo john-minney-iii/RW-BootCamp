@@ -5,7 +5,7 @@ Expand on Week-4 Homework
 	- When logged in have the app go the 'main' screen (sharedPref)
 	- Allow user to log out
 
-- Create a Room Database and Data Access Object (DAO)
+- [x] Create a Room Database and Data Access Object (DAO)
 	- Methods to Read and Write
 
 - Landscape Orientation!!!!!
