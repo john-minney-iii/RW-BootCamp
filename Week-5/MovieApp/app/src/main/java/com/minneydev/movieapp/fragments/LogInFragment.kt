@@ -13,7 +13,7 @@ import com.minneydev.movieapp.R
 import com.minneydev.movieapp.manager.UserDataManager
 import kotlinx.android.synthetic.main.fragment_log_in.*
 
-class LogInFragment : Fragment() {
+class  LogInFragment : Fragment() {
 
     private lateinit var userDataManager: UserDataManager
 
@@ -40,6 +40,11 @@ class LogInFragment : Fragment() {
         loginBtn.setOnClickListener {
             validateLogin()
         }
+
+        registerTextView.setOnClickListener {
+            goToRegisterScreen()
+        }
+
     }
 
     override fun onAttach(context: Context) {
@@ -75,6 +80,12 @@ class LogInFragment : Fragment() {
     private fun goToMainScreen() {
         view?.let {
             Navigation.findNavController(it).navigate(R.id.action_logInFragment_to_movieFragment)
+        }
+    }
+
+    private fun goToRegisterScreen() {
+        view?.let {
+            Navigation.findNavController(it).navigate(R.id.action_logInFragment_to_registerFragment)
         }
     }
 

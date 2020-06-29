@@ -22,14 +22,14 @@
         android:src="@drawable/movie_app_logo" />
 
     <TextView
-        android:id="@+id/loginTitle"
+        android:id="@+id/registerTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/login_title_top"
         android:gravity="center_horizontal"
-        android:text="@string/login_title"
+        android:text="@string/register_title"
         android:textColor="@color/colorGreyDark"
-        android:textSize="18sp" />
+        android:textSize="@dimen/login_page_title_text_size" />
 
     <EditText
         android:id="@+id/emailEditText"
@@ -53,22 +53,33 @@
         android:inputType="textPassword"
         android:importantForAutofill="no" />
 
+    <EditText
+        android:id="@+id/password2EditText"
+        android:layout_width="@dimen/edit_text_length"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/pswd_edit_text_top_margin"
+        android:ems="10"
+        android:hint="@string/repeat_password"
+        android:importantForAutofill="no"
+        android:inputType="textPassword" />
+
     <Button
-        android:id="@+id/loginBtn"
+        android:id="@+id/registerBtn"
         android:layout_width="@dimen/edit_text_length"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/login_btn_top_margin"
-        android:text="@string/login" />
+        android:text="@string/register" />
 
     <TextView
-        android:id="@+id/registerTextView"
+        android:id="@+id/helpTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/reg_text_view_top_margin"
         android:clickable="true"
-        android:text="@string/register_text_view"
-        android:focusable="true" />
+        android:focusable="true"
+        android:text="@string/help" />
 
 </LinearLayout>
