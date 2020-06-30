@@ -19,7 +19,6 @@ class DetailFragment : Fragment() {
 
     companion object {
         lateinit var movie: Movie
-
     }
 
     override fun onCreateView(

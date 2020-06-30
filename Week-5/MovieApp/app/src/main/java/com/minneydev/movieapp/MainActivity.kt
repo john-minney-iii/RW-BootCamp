@@ -39,10 +39,6 @@ class MainActivity : AppCompatActivity() {
             R.id.logOut -> { logOut() }
             R.id.aboutAccount -> { showAccount() }
         }
-
-        if (item.itemId == R.id.about) {
-            showInfo()
-        }
         return true
     }
 
