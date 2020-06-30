@@ -5,14 +5,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.minneydev.movieapp.fragments.DetailFragment
 import com.minneydev.movieapp.R
+import com.minneydev.movieapp.data.Movie
 
-class DetailAdapter : RecyclerView.Adapter<DetailViewHolder>() {
-
-    private val currentMovie = DetailFragment.movie
+class DetailAdapter(val movie: Movie) : RecyclerView.Adapter<DetailViewHolder>() {
 
     private val movieInfo = arrayOf(
-        Pair("Summary", currentMovie.summary),
-        Pair("Release Date", currentMovie.releaseDate)
+        Pair("Summary", movie.summary),
+        Pair("Release Date", movie.releaseDate)
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {

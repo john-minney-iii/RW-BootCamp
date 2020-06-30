@@ -19,5 +19,8 @@ interface MovieDao {
     @Query ("DELETE FROM movie_table")
     suspend fun deleteAll()
 
+    @Query ("SELECT * FROM movie_table WHERE movieTitle LIKE :title LIMIT 1")
+    suspend fun getByTitle(title: String) : Movie
+
 
 }

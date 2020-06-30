@@ -11,7 +11,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 
-@Database (entities = [Movie::class], version = 1, exportSchema = false)
+@Database (entities = [Movie::class], version = 1, exportSchema = true)
 abstract class MovieDataBase : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao

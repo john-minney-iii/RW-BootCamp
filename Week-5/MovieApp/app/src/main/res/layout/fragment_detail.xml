@@ -28,7 +28,7 @@
             app:srcCompat="@drawable/ic_launcher_foreground" />
 
         <TextView
-            android:id="@+id/cardTitle"
+            android:id="@+id/movieTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@color/colorGreyDark"
@@ -52,7 +52,7 @@
             android:background="@color/colorPrimary"
             android:clickable="true"
             app:backgroundTint="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="@+id/cardTitle"
+            app:layout_constraintBottom_toBottomOf="@+id/movieTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.954"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,7 +69,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/movieTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

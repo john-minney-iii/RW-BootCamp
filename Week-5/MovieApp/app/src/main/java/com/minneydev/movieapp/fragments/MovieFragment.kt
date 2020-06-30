@@ -42,7 +42,6 @@ class MovieFragment : Fragment(), MovieAdapter.MovieClickListener {
         movieViewModel.allMovies.observe(viewLifecycleOwner, Observer { movies ->
             movies?.let { adapter.setMovies(it) }
         })
-        addMovies(getMoviesArray())
     }
 
     private fun showMovieDetail(movie: Movie) {

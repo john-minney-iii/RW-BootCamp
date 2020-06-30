@@ -11,4 +11,8 @@ class MovieRepository(private val movieDao: MovieDao) {
         movieDao.insert(movie)
     }
 
+    suspend fun getByTitle(title: String) : Movie {
+        return movieDao.getByTitle(title)
+    }
+
 }

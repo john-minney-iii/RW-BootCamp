@@ -8,13 +8,13 @@ import androidx.room.PrimaryKey
 
 @Entity (tableName = "movie_table")
 data class Movie(
-    @PrimaryKey @ColumnInfo(name = "id") val id: Int,
-    @ColumnInfo(name = "releaseDate") val releaseDate: String,
-    @ColumnInfo(name = "title") val title: String,
-    @ColumnInfo(name = "summary") val summary: String,
-    @ColumnInfo(name = "posterUrl") var posterUrl: String = "",
-    @ColumnInfo(name = "bannerUrl") var bannerUrl: String = "",
-    @ColumnInfo(name = "imdb") var imdb: String = "") : Parcelable {
+    val id: Int,
+    val releaseDate: String,
+    @PrimaryKey @ColumnInfo(name = "movieTitle") val title: String,
+    val summary: String,
+    var posterUrl: String = "",
+    var bannerUrl: String = "",
+    var imdb: String = "") : Parcelable {
 
     constructor(parcel: Parcel) : this(
         parcel.readInt(),

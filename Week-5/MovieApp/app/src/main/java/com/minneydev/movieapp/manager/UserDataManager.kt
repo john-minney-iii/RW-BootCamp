@@ -7,22 +7,23 @@ import com.minneydev.movieapp.data.User
 class UserDataManager(private val context: Context) {
 
     private val USER_PREF = "user"
+    private val EMAIL = "email"
+    private val PASS = "password"
+    private val LOGGED_IN = "isLoggedIn"
 
     fun saveUserData(email: String, password: String, isLoggedIn: Boolean) {
         context.getSharedPreferences(USER_PREF,Context.MODE_PRIVATE).edit()
-            .putString("email", email)
-            .putString("password", password)
-            .putBoolean("isLoggedIn", isLoggedIn)
+            .putString(EMAIL, email)
+            .putString(PASS, password)
+            .putBoolean(LOGGED_IN, isLoggedIn)
             .apply()
-        Log.d("SAVE", "$email saved")
-
     }
 
     fun readUserData(): User? {
         val contents = context.getSharedPreferences(USER_PREF,Context.MODE_PRIVATE).all
-        return contents["isLoggedIn"]?.let {
-            User(email = contents["email"].toString(),
-                password = contents["password"].toString(),
+        return contents[LOGGED_IN]?.let {
+            User(email = contents[EMAIL].toString(),
+                password = contents[PASS].toString(),
                 isLoggedIn = it as Boolean
             )
         }
@@ -30,22 +31,22 @@ class UserDataManager(private val context: Context) {
 
     fun readUserEmail(): String? {
         return context.getSharedPreferences(USER_PREF, Context.MODE_PRIVATE)
-            .getString("email", "")
+            .getString(EMAIL, "")
     }
 
     fun readUserPassword(): String? {
         return context.getSharedPreferences(USER_PREF, Context.MODE_PRIVATE)
-            .getString("password", "")
+            .getString(PASS, "")
     }
 
     fun readIsLoggedIn(): Boolean? {
         return context.getSharedPreferences(USER_PREF, Context.MODE_PRIVATE)
-            .getBoolean("isLoggedIn", false)
+            .getBoolean(LOGGED_IN, false)
     }
 
     fun logOutUser() {
         context.getSharedPreferences(USER_PREF,Context.MODE_PRIVATE).edit()
-            .putBoolean("isLoggedIn", false).apply()
+            .putBoolean(LOGGED_IN, false).apply()
     }
 
     fun deleteUserData() {
@@ -55,6 +56,6 @@ class UserDataManager(private val context: Context) {
 
     fun userLoggedIn() {
         context.getSharedPreferences(USER_PREF,Context.MODE_PRIVATE).edit()
-            .putBoolean("isLoggedIn", true).apply()
+            .putBoolean(LOGGED_IN, true).apply()
     }
 }

@@ -18,11 +18,6 @@ class RegisterFragment : Fragment() {
 
     private lateinit var userDataManager: UserDataManager
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,12 +38,6 @@ class RegisterFragment : Fragment() {
         userDataManager = UserDataManager(context)
     }
 
-    companion object {
-
-        fun newInstance(param1: String, param2: String) =
-            RegisterFragment().apply {}
-    }
-
     private fun validateProfile() {
         val email = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
@@ -62,19 +51,10 @@ class RegisterFragment : Fragment() {
 
     }
 
-    private fun validateEmail(email: String) : Boolean {
-        if (email.contains("@gmail.com")) {
-            return true
-        }
-        return false
-    }
+    private fun validateEmail(email: String) = email.contains("@gmail.com")
 
-    private fun validatePassword(pass1: String, pass2: String) : Boolean {
-        if ((pass1.length > 4) && (pass1 == pass2)) {
-            return true
-        }
-        return false
-    }
+    private fun validatePassword(pass1: String, pass2: String)
+            = ((pass1.length > 4) && (pass1 == pass2))
 
     private fun fail() {
         activity?.let {
