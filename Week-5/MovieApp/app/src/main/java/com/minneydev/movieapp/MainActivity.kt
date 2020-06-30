@@ -9,6 +9,7 @@ import androidx.navigation.Navigation
 import com.minneydev.movieapp.data.User
 import com.minneydev.movieapp.manager.UserDataManager
 
+//Comment For A Test Commit
 class MainActivity : AppCompatActivity() {
 
     private lateinit var currentUser: User
