@@ -33,8 +33,8 @@ class  LogInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        userDataManager.readUserData()?.let {
-            if (it.isLoggedIn) { goToMainScreen() }
+        userDataManager.readIsLoggedIn().let {
+            if (it!!) { goToMainScreen() }
         }
 
         loginBtn.setOnClickListener {
@@ -55,8 +55,8 @@ class  LogInFragment : Fragment() {
     private fun validateLogin() {
         val email = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
-        val sharedUser = userDataManager.readUserData()
-        if (email == sharedUser?.email && password == sharedUser.password) { pass() }
+        if (email == userDataManager.readUserEmail()
+            && password == userDataManager.readUserPassword()) { pass() }
         else { fail() }
     }
 

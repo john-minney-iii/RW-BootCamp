@@ -1,9 +1,7 @@
 package com.minneydev.movieapp.manager
 
 import android.content.Context
-import android.content.SharedPreferences
 import android.util.Log
-import androidx.preference.PreferenceManager
 import com.minneydev.movieapp.data.User
 
 class UserDataManager(private val context: Context) {
@@ -28,6 +26,21 @@ class UserDataManager(private val context: Context) {
                 isLoggedIn = it as Boolean
             )
         }
+    }
+
+    fun readUserEmail(): String? {
+        return context.getSharedPreferences(USER_PREF, Context.MODE_PRIVATE)
+            .getString("email", "")
+    }
+
+    fun readUserPassword(): String? {
+        return context.getSharedPreferences(USER_PREF, Context.MODE_PRIVATE)
+            .getString("password", "")
+    }
+
+    fun readIsLoggedIn(): Boolean? {
+        return context.getSharedPreferences(USER_PREF, Context.MODE_PRIVATE)
+            .getBoolean("isLoggedIn", false)
     }
 
     fun logOutUser() {
