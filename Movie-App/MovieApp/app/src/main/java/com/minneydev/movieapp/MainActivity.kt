@@ -56,13 +56,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showAccount() {
-        val tempString = getString(R.string.account_message,
-            currentUser.email, currentUser.password
-        )
-        AlertDialog.Builder(this)
-            .setTitle(R.string.account_title)
-            .setMessage(tempString)
-            .create().show()
+        if (dataManager.readIsLoggedIn()!!) {
+            val tempString = getString(
+                R.string.account_message,
+                currentUser.email, currentUser.password
+            )
+            AlertDialog.Builder(this)
+                .setTitle(R.string.account_title)
+                .setMessage(tempString)
+                .create().show()
+        }
     }
 
 
