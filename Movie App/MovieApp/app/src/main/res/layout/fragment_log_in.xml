@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGrey"
+    android:orientation="vertical"
+    tools:context=".fragments.LogInFragment">
+
+    <ImageView
+        android:id="@+id/appLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/logo_top_margin"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/logo_descrip"
+        android:maxWidth="@dimen/logo_size"
+        android:maxHeight="@dimen/logo_size"
+        android:scaleType="fitCenter"
+        android:src="@drawable/movie_app_logo" />
+
+    <TextView
+        android:id="@+id/loginTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_title_top"
+        android:gravity="center_horizontal"
+        android:text="@string/login_title"
+        android:textColor="@color/colorGreyDark"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="@dimen/edit_text_length"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/email_edit_text_top_margin"
+        android:ems="10"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        android:layout_width="@dimen/edit_text_length"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/pswd_edit_text_top_margin"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:importantForAutofill="no" />
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="@dimen/edit_text_length"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/login_btn_top_margin"
+        android:text="@string/login" />
+
+    <TextView
+        android:id="@+id/registerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/reg_text_view_top_margin"
+        android:clickable="true"
+        android:text="@string/register_text_view"
+        android:focusable="true" />
+
+</LinearLayout>

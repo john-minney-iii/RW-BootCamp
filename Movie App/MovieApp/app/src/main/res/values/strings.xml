@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Movie App</string>
+    <string name="poster">Movie Poster</string>
+    <string name="placeholder">Place Holder</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="about">About</string>
+    <string name="log_out">Log Out</string>
+    <string name="about_account">My Account</string>
+    <string name="account_title">Your Account</string>
+    <string name="account_message">Email: %s, Password: %s</string>
+    <string name="no_back">No Back Pressed Action</string>
+
+    <string name="banner_descrip">Movie Banner</string>
+
+    <string name="summary">Summary</string>
+
+    <string name="alert_title">Movie App</string>
+    <string name="alert_message">Created by John Minney III</string>
+
+    <string name="failed_reg_title">Register Failed</string>
+    <string name="failed_reg_message">Email or Password Did Not Meet Requirements</string>
+
+    <string name="logo_descrip">App Logo</string>
+
+    <!-- Login Screen -->
+    <string name="login_title">Login To Access You Movie List!</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Log In</string>
+    <string name="register_text_view">Don\'t have an Account? Create One!</string>
+
+    <string name="failed_login_title">Failed Login</string>
+    <string name="failed_login_message">Email or Password Doesn\'t Match Any Profiles</string>
+    
+    <string name="help_title">Help!!!</string>
+    <string name="help_message">Email must have a correct Domain. Password must
+                                be at least five characters long.</string>
+
+    <!-- Register Screen -->
+    <string name="register_title">Register To Begin a Movie List</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="register">Register</string>
+    <string name="help">Help!</string>
+
+</resources>
