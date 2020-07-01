@@ -3,7 +3,6 @@ package com.minneydev.movieapp.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.minneydev.movieapp.fragments.DetailFragment
 import com.minneydev.movieapp.R
 import com.minneydev.movieapp.data.Movie
 

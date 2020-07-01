@@ -1,7 +1,6 @@
 package com.minneydev.movieapp.manager
 
 import android.content.Context
-import android.util.Log
 import com.minneydev.movieapp.data.User
 
 class UserDataManager(private val context: Context) {

@@ -8,6 +8,7 @@
     <string name="about_account">My Account</string>
     <string name="account_title">Your Account</string>
     <string name="account_message">Email: %s, Password: %s</string>
+    <string name="no_back">No Back Pressed Action</string>
 
     <string name="banner_descrip">Movie Banner</string>
 
