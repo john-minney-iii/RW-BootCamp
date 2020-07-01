@@ -3,16 +3,14 @@ package com.minneydev.movieapp.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.minneydev.movieapp.DetailActivity
 import com.minneydev.movieapp.R
+import com.minneydev.movieapp.data.Movie
 
-class DetailAdapter : RecyclerView.Adapter<DetailViewHolder>() {
-
-    private val currentMovie = DetailActivity.movie
+class DetailAdapter(val movie: Movie) : RecyclerView.Adapter<DetailViewHolder>() {
 
     private val movieInfo = arrayOf(
-        Pair("Summary", currentMovie?.summary),
-        Pair("Release Date", currentMovie?.releaseDate)
+        Pair("Summary", movie.summary),
+        Pair("Release Date", movie.releaseDate)
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {

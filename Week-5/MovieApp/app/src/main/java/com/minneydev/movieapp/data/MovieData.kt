@@ -72,7 +72,7 @@ val tnes = Movie(
     title = "The Never Ending Story",
     summary = "On his way to school, Bastian ducks into a bookstore to avoid " +
             "bullies. Sneaking away with a book called \"The Neverending Story,\" Bastian " +
-            "begins reading it in the school attic. The novel is about Fantasia, a fantasy " +
+            "begins reading it in the school attic. The novel is app_menu Fantasia, a fantasy " +
             "land threatened by \"The Nothing,\" a darkness that destroys everything it " +
             "touches. The kingdom needs the help of a human child to survive. When Bastian " +
             "reads a description of himself in the book, he begins to wonder if Fantasia is " +
@@ -236,14 +236,14 @@ val pixels = Movie(
             "home-theater installer Sam Brenner, to lead a team of " +
             "old-school arcade players and a military specialist " +
             "in an all-out battle to save the planet.",
-    posterUrl = "https://lh3.googleusercontent.com/proxy/mz8sPl-Ly0HV46qzaBprymL7ripEkgr0m2uBf" +
-            "kL4NoRs4K31Y1QipkU002tfIVjtRs7LTiLp626J-c8BnMeO72f7byOEIURg_rZEjSNEfAYA",
+    posterUrl = "https://images-na.ssl-images-amazon.com/images/I/51MLqr%2BPyML._AC_.jpg",
     bannerUrl = "https://i.ytimg.com/vi/kiL6pLaFucs/maxresdefault.jpg",
     imdb = "https://www.imdb.com/title/tt2120120/"
 )
 
-fun getMoviesArray() : Array<Movie> {
-    return arrayOf<Movie>(
+
+fun getMoviesArray() : List<Movie> {
+    return listOf<Movie>(
         hackers, warGames, sandlot, bttf, tnes, lotr, tsn, fbdo, rpo, theDirt, gnd,
         grownUps, spiderman, gotg, pixels
     )

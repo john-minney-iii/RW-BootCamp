@@ -2,11 +2,15 @@ package com.minneydev.movieapp.data
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity (tableName = "movie_table")
 data class Movie(
     val id: Int,
     val releaseDate: String,
-    val title: String,
+    @PrimaryKey @ColumnInfo(name = "movieTitle") val title: String,
     val summary: String,
     var posterUrl: String = "",
     var bannerUrl: String = "",

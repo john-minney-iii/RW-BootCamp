@@ -1,54 +1,43 @@
 package com.minneydev.movieapp
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
-import androidx.recyclerview.widget.GridLayoutManager
-import com.minneydev.movieapp.data.Movie
-import com.minneydev.movieapp.ui.MovieAdapter
-import kotlinx.android.synthetic.main.activity_main.*
+import androidx.navigation.Navigation
+import com.minneydev.movieapp.data.User
+import com.minneydev.movieapp.manager.UserDataManager
 
-//A few of the movies Jen put in her's are some of my favorites lol.
+//Comment For A Test Commit
+class MainActivity : AppCompatActivity() {
 
-class MainActivity : AppCompatActivity(), MovieAdapter.MovieClickListener {
+    private lateinit var currentUser: User
 
-    companion object {
-        const val INTENT_MOVIE_KEY = "movie"
-    }
-
-    private val spanCount = 2
+    private val dataManager = UserDataManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Navigation.findNavController(this, R.id.nav_host_fragment)
 
-        mainRecyclerView.layoutManager = GridLayoutManager(this, spanCount)
-        mainRecyclerView.adapter = MovieAdapter(this)
+        dataManager.readUserData()?.let {
+            currentUser = it
+        }
 
-    }
-
-    private fun showMovieDetail(movie: Movie) {
-        Intent(this, DetailActivity::class.java)
-            .apply { putExtra(INTENT_MOVIE_KEY, movie) }
-            .run { startActivity(this) }
-    }
-
-    override fun movieClicked(movie: Movie) {
-        showMovieDetail(movie)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         super.onCreateOptionsMenu(menu)
-        menuInflater.inflate(R.menu.about, menu)
+        menuInflater.inflate(R.menu.app_menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.aboutMenu) {
-            showInfo()
+        when (item.itemId) {
+            R.id.about -> { showInfo() }
+            R.id.logOut -> { logOut() }
+            R.id.aboutAccount -> { showAccount() }
         }
         return true
     }
@@ -59,5 +48,24 @@ class MainActivity : AppCompatActivity(), MovieAdapter.MovieClickListener {
             .setMessage(R.string.alert_message)
             .create().show()
     }
+
+    private fun logOut() {
+        dataManager.logOutUser()
+        Navigation.findNavController(this, R.id.nav_host_fragment)
+            .navigate(R.id.logInFragment)
+    }
+
+    private fun showAccount() {
+        val tempString = getString(R.string.account_message,
+            currentUser.email, currentUser.password
+        )
+        AlertDialog.Builder(this)
+            .setTitle(R.string.account_title)
+            .setMessage(tempString)
+            .create().show()
+    }
+
+
+
 
 }

@@ -1,22 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Main -->
     <dimen name="recycler_view_margin">8dp</dimen>
     <dimen name="card_margin">10dp</dimen>
     <dimen name="poster_margin">5dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
 
+    <!-- Detail -->
+    <dimen name="fab_margin">16dp</dimen>
     <dimen name="movie_title_padding">5dp</dimen>
     <dimen name="movie_title_size">24sp</dimen>
     <dimen name="movie_title_padding_start">15dp</dimen>
-
     <dimen name="fab_bottom_margin">8dp</dimen>
     <dimen name="fab_end_margin">2dp</dimen>
-
     <dimen name="banner_bottom_margin">607dp</dimen>
     <dimen name="banner_height">250dp</dimen>
 
+    <!-- Card -->
     <dimen name="card_e">0dp</dimen>
     <dimen name="card_r">15dp</dimen>
     <dimen name="card_main_r">10dp</dimen>
+
+    <!-- Login/Register Screen -->
+    <dimen name="login_page_title_text_size">18sp</dimen>
+    <dimen name="login_title_top">50dp</dimen>
+    <dimen name="login_title_start">25dp</dimen>
+    <dimen name="logo_size">100dp</dimen>
+    <dimen name="logo_top_margin">100dp</dimen>
+    <dimen name="email_edit_text_top_margin">50dp</dimen>
+    <dimen name="pswd_edit_text_top_margin">30dp</dimen>
+    <dimen name="edit_text_length">300dp</dimen>
+    <dimen name="login_btn_top_margin">40dp</dimen>
+    <dimen name="reg_text_view_top_margin">20dp</dimen>
+    <dimen name="logo_margin_Start">35dp</dimen>
+
+    <dimen name="title_horz_margin_top">60dp</dimen>
+    <dimen name="title_horz_margin_end">32dp</dimen>
+    <dimen name="email_horz_top">44dp</dimen>
+    <dimen name="password_horz_top">28dp</dimen>
+    <dimen name="loginBtn_horz_end">80dp</dimen>
+    <dimen name="help_horz_start">152dp</dimen>
+    <dimen name="register_title_horz_top">40dp</dimen>
+    <dimen name="email_reg_horz_top">24dp</dimen>
+    <dimen name="pass2_horz_top">24dp</dimen>
+
 
 </resources>
