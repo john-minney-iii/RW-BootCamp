@@ -8,4 +8,7 @@
     <color name="colorGrey">#AFBDC4</color>
     <color name="colorGreyDark">#808D94</color>
     <color name="colorGreyLight">#E1EFF7</color>
+    
+    <color name="gradient_top">#9b0493</color> <!-- rgb(155,4,147) -->
+    <color name="gradient_bottom">#3a068e</color> <!-- rgb(58,6,142) -->
 </resources>

@@ -47,6 +47,7 @@ class  LogInFragment : Fragment() {
         }
 
         loginBtn.setOnClickListener {
+//            goToTestFragment()
             validateLogin()
         }
 
@@ -94,6 +95,12 @@ class  LogInFragment : Fragment() {
     private fun goToRegisterScreen() {
         view?.let {
             Navigation.findNavController(it).navigate(R.id.action_logInFragment_to_registerFragment)
+        }
+    }
+
+    private fun goToTestFragment() {
+        view?.let {
+            Navigation.findNavController(it).navigate(R.id.action_logInFragment_to_testFragment)
         }
     }
 
