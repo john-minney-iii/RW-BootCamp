@@ -1,4 +1,4 @@
-package com.minneydev.movieapp.ui
+package com.minneydev.movieapp.movieDetailFragment.ui
 
 import android.view.View
 import android.widget.TextView

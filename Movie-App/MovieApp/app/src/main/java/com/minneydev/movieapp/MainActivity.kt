@@ -6,30 +6,32 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.Navigation
+import androidx.room.Room
 import com.minneydev.movieapp.data.User
 import com.minneydev.movieapp.manager.UserDataManager
+import com.minneydev.movieapp.savingUserData.USERDATABASE_NAME
+import com.minneydev.movieapp.savingUserData.UserDataBase
+import com.minneydev.movieapp.savingUserData.UserRepository
 
 //Comment For A Test Commit
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var currentUser: User
+    private lateinit var userDataBase: UserDataBase
+    private val userRepository by lazy { UserRepository(userDataBase) }
+    private val currentUser by lazy { userRepository.getLoggedInUser(true) }
 
-    private val dataManager = UserDataManager(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        userDataBase = Room.databaseBuilder(this, UserDataBase::class.java, USERDATABASE_NAME)
+            .allowMainThreadQueries().build()
         setContentView(R.layout.activity_main)
         Navigation.findNavController(this, R.id.nav_host_fragment)
-
-        dataManager.readUserData()?.let {
-            currentUser = it
-        }
 
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        super.onCreateOptionsMenu(menu)
-        menuInflater.inflate(R.menu.app_menu, menu)
+        this.menuInflater.inflate(R.menu.app_menu, menu)
         return true
     }
 
@@ -49,26 +51,16 @@ class MainActivity : AppCompatActivity() {
             .create().show()
     }
 
+    private fun showAccount() {
+        AlertDialog.Builder(this)
+            .setTitle("${currentUser?.email}")
+            .setMessage("${currentUser?.password}")
+            .create().show()
+    }
+
     private fun logOut() {
-        dataManager.logOutUser()
         Navigation.findNavController(this, R.id.nav_host_fragment)
             .navigate(R.id.logInFragment)
     }
-
-    private fun showAccount() {
-        if (dataManager.readIsLoggedIn()!!) {
-            val tempString = getString(
-                R.string.account_message,
-                currentUser.email, currentUser.password
-            )
-            AlertDialog.Builder(this)
-                .setTitle(R.string.account_title)
-                .setMessage(tempString)
-                .create().show()
-        }
-    }
-
-
-
 
 }

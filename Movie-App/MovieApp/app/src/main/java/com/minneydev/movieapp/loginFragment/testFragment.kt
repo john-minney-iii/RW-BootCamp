@@ -1,4 +1,4 @@
-package com.minneydev.movieapp.fragments
+package com.minneydev.movieapp.loginFragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

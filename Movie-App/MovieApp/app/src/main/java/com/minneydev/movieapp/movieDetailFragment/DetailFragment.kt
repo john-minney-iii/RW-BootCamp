@@ -1,4 +1,4 @@
-package com.minneydev.movieapp.fragments
+package com.minneydev.movieapp.movieDetailFragment
 
 import android.content.Intent
 import android.net.Uri
@@ -11,8 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.minneydev.movieapp.R
 import com.minneydev.movieapp.data.Movie
+import com.minneydev.movieapp.fragments.DetailFragmentArgs
 import com.minneydev.movieapp.savingMovieData.MovieViewModel
-import com.minneydev.movieapp.ui.DetailAdapter
+import com.minneydev.movieapp.movieDetailFragment.ui.DetailAdapter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_detail.*
 
@@ -37,11 +38,14 @@ class DetailFragment : Fragment() {
             arguments?.let {bundle ->
                 movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
                 val args =
-                    DetailFragmentArgs.fromBundle(bundle).movieString
+                    DetailFragmentArgs.fromBundle(
+                        bundle
+                    ).movieString
                 movie = movieViewModel.getByTitle(args)
                 displayMovie(movie)
             }
-            detailRecyclerView.adapter = DetailAdapter(movie!!)
+            detailRecyclerView.adapter =
+                DetailAdapter(movie!!)
 
             searchMovieFab.setOnClickListener {
                 val intent = Intent(Intent.ACTION_VIEW)

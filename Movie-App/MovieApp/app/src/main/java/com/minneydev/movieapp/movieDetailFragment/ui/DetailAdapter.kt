@@ -1,4 +1,4 @@
-package com.minneydev.movieapp.ui
+package com.minneydev.movieapp.movieDetailFragment.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -16,7 +16,9 @@ class DetailAdapter(val movie: Movie) : RecyclerView.Adapter<DetailViewHolder>()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.detail_card, parent, false)
-        return DetailViewHolder(view)
+        return DetailViewHolder(
+            view
+        )
     }
 
     override fun getItemCount() : Int  = movieInfo.size

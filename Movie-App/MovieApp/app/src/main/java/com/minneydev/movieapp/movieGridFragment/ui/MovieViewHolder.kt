@@ -1,4 +1,4 @@
-package com.minneydev.movieapp.ui
+package com.minneydev.movieapp.movieGridFragment.ui
 
 import android.view.View
 import android.widget.ImageView
