@@ -5,24 +5,28 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.room.Room
 import com.minneydev.movieapp.savingUserData.USERDATABASE_NAME
 import com.minneydev.movieapp.savingUserData.UserDataBase
 import com.minneydev.movieapp.savingUserData.UserRepository
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 //Comment For A Test Commit
 class MainActivity : AppCompatActivity() {
 
     private lateinit var userDataBase: UserDataBase
     private val userRepository by lazy { UserRepository(userDataBase) }
-    private val currentUser by lazy { userRepository.getLoggedInUser(true) }
+    private val currentUser by lazy { runBlocking  {
+        userRepository.getLoggedInUser(true) } }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         userDataBase = Room.databaseBuilder(this, UserDataBase::class.java, USERDATABASE_NAME)
-            .allowMainThreadQueries().build()
+            .build()
         setContentView(R.layout.activity_main)
         Navigation.findNavController(this, R.id.nav_host_fragment)
 
@@ -58,7 +62,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun logOut() {
         currentUser?.isLoggedIn = false
-        currentUser?.let { userRepository.logOutUser(it) }
+        lifecycleScope.launch {
+            currentUser.let {
+                userRepository.logOutUser(it)
+            }
+        }
+
         Navigation.findNavController(this, R.id.nav_host_fragment)
             .navigate(R.id.logInFragment)
     }

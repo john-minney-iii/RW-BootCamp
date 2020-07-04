@@ -7,22 +7,22 @@ import com.minneydev.movieapp.data.User
 interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun newUser(user: User)
+    suspend fun newUser(user: User)
 
     @Query("DELETE FROM user_table")
-    fun deleteAll()
+    suspend fun deleteAll()
 
     @Query("SELECT * FROM user_table WHERE userEmail=:email")
-    fun fetchUserByEmail(email: String): User?
+    suspend fun fetchUserByEmail(email: String): User?
 
     @Query("SELECT * FROM user_table WHERE isLoggedIn=:bool")
-    fun fetchLoggedInUser(bool: Boolean): User?
+    suspend fun fetchLoggedInUser(bool: Boolean): User?
 
     @Update
-    fun logOutUser(user: User)
+    suspend fun logOutUser(user: User?)
 
     @Update
-    fun logInUser(user: User)
+    suspend fun logInUser(user: User?)
 
 
 }

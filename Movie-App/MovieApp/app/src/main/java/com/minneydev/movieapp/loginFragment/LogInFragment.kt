@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.room.Room
 import com.minneydev.movieapp.R
@@ -16,13 +17,17 @@ import com.minneydev.movieapp.savingUserData.USERDATABASE_NAME
 import com.minneydev.movieapp.savingUserData.UserDataBase
 import com.minneydev.movieapp.savingUserData.UserRepository
 import kotlinx.android.synthetic.main.fragment_log_in.*
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlin.system.exitProcess
 
 class  LogInFragment : Fragment() {
 
     private lateinit var userDataBase: UserDataBase
     private val userRepository by lazy { UserRepository(userDataBase) }
-    private val currentUser by lazy { userRepository.getLoggedInUser(true) }
+    private val currentUser by lazy { runBlocking {
+        userRepository.getLoggedInUser(true)
+    } }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,25 +66,25 @@ class  LogInFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         userDataBase = Room.databaseBuilder(context, UserDataBase::class.java, USERDATABASE_NAME)
-            .allowMainThreadQueries().build()
+            .build()
     }
 
     private fun validateLogin() {
         val email = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
-        val fetchedUser = userRepository.getUserByEmail(email)
-
-        if (fetchedUser != null && password == fetchedUser.password) {
-            pass(fetchedUser)
-        }else {
-            fail()
+        lifecycleScope.launch {
+            val fetchedUser = userRepository.getUserByEmail(email)
+            if (fetchedUser != null && password == fetchedUser.password) {
+                pass(fetchedUser)
+            }else {
+                fail()
+            }
         }
-
     }
 
     private fun pass(user: User) {
         user.isLoggedIn = true
-        userRepository.logInUser(user)
+        lifecycleScope.launch { userRepository.logInUser(user) }
         goToMainScreen()
 
     }

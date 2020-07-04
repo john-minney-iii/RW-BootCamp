@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.room.Room
 import com.minneydev.movieapp.R
@@ -16,6 +17,7 @@ import com.minneydev.movieapp.savingUserData.UserRepository
 import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.fragment_register.emailEditText
 import kotlinx.android.synthetic.main.fragment_register.passwordEditText
+import kotlinx.coroutines.launch
 
 class RegisterFragment : Fragment() {
 
@@ -41,7 +43,7 @@ class RegisterFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         userDataBase = Room.databaseBuilder(context, UserDataBase::class.java, USERDATABASE_NAME)
-            .allowMainThreadQueries().build()
+            .build()
     }
 
     private fun validateProfile() {
@@ -82,7 +84,9 @@ class RegisterFragment : Fragment() {
     }
 
     private fun saveUser(email: String, password: String) {
-        userRepository.newUser(email, password)
+        lifecycleScope.launch {
+            userRepository.newUser(email, password)
+        }
     }
 
     private fun showHelp() {
