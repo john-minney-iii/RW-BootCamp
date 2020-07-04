@@ -8,4 +8,4 @@ import androidx.room.PrimaryKey
 data class User(
     @PrimaryKey @ColumnInfo(name = "userEmail") val  email: String,
     val password: String,
-    @ColumnInfo(name = "isLoggedIn") val isLoggedIn: Boolean = false)
+    @ColumnInfo(name = "isLoggedIn") var isLoggedIn: Boolean = false)

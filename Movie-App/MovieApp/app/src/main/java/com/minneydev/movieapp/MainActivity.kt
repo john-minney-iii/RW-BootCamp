@@ -7,8 +7,6 @@ import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.navigation.Navigation
 import androidx.room.Room
-import com.minneydev.movieapp.data.User
-import com.minneydev.movieapp.manager.UserDataManager
 import com.minneydev.movieapp.savingUserData.USERDATABASE_NAME
 import com.minneydev.movieapp.savingUserData.UserDataBase
 import com.minneydev.movieapp.savingUserData.UserRepository
@@ -59,6 +57,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun logOut() {
+        currentUser?.isLoggedIn = false
+        currentUser?.let { userRepository.logOutUser(it) }
         Navigation.findNavController(this, R.id.nav_host_fragment)
             .navigate(R.id.logInFragment)
     }

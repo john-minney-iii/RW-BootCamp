@@ -11,6 +11,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.navigation.Navigation
 import androidx.room.Room
 import com.minneydev.movieapp.R
+import com.minneydev.movieapp.data.User
 import com.minneydev.movieapp.savingUserData.USERDATABASE_NAME
 import com.minneydev.movieapp.savingUserData.UserDataBase
 import com.minneydev.movieapp.savingUserData.UserRepository
@@ -69,15 +70,18 @@ class  LogInFragment : Fragment() {
         val fetchedUser = userRepository.getUserByEmail(email)
 
         if (fetchedUser != null && password == fetchedUser.password) {
-            pass()
+            pass(fetchedUser)
         }else {
             fail()
         }
 
     }
 
-    private fun pass() {
+    private fun pass(user: User) {
+        user.isLoggedIn = true
+        userRepository.logInUser(user)
         goToMainScreen()
+
     }
 
     private fun fail() {

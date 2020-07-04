@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.room.Room
 import com.minneydev.movieapp.R
-import com.minneydev.movieapp.manager.UserDataManager
 import com.minneydev.movieapp.savingUserData.USERDATABASE_NAME
 import com.minneydev.movieapp.savingUserData.UserDataBase
 import com.minneydev.movieapp.savingUserData.UserRepository
@@ -20,7 +19,6 @@ import kotlinx.android.synthetic.main.fragment_register.passwordEditText
 
 class RegisterFragment : Fragment() {
 
-    private lateinit var userDataManager: UserDataManager
     private lateinit var userDataBase: UserDataBase
     private val userRepository by lazy { UserRepository(userDataBase) }
 
@@ -44,7 +42,6 @@ class RegisterFragment : Fragment() {
         super.onAttach(context)
         userDataBase = Room.databaseBuilder(context, UserDataBase::class.java, USERDATABASE_NAME)
             .allowMainThreadQueries().build()
-        userDataManager = UserDataManager(context)
     }
 
     private fun validateProfile() {

@@ -15,4 +15,8 @@ class UserRepository(userDb: UserDataBase) {
 
     fun getLoggedInUser(bool: Boolean) : User? = userDao.fetchLoggedInUser(bool)
 
+    fun logOutUser(user: User) = userDao.logOutUser(user)
+
+    fun logInUser(user: User) = userDao.logInUser(user)
+
 }
