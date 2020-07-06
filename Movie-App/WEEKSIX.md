@@ -5,7 +5,7 @@ So for week five I put Coroutines into my project. So I think I'm going to have 
 - [x] Kotlin Coroutines Support
 - [x] Implemented the LifecycleScope from Android Jetpack Lifecycle Components
 - [x] Launch functions to start coroutines
-- [ ] Different dispatchers and switching from Main to BG or vice-versa
+- [?] Different dispatchers and switching from Main to BG or vice-versa
 - [x] DON'T USE GLOBAL SCOPE!!
 
 - Extra Credit

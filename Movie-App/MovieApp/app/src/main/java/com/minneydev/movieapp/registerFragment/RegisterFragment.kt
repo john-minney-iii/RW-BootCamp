@@ -1,7 +1,6 @@
 package com.minneydev.movieapp.registerFragment
 
 import android.app.AlertDialog
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,10 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
-import androidx.room.Room
+import com.minneydev.movieapp.App
 import com.minneydev.movieapp.R
-import com.minneydev.movieapp.savingUserData.USERDATABASE_NAME
-import com.minneydev.movieapp.savingUserData.UserDataBase
 import com.minneydev.movieapp.savingUserData.UserRepository
 import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.fragment_register.emailEditText
@@ -21,8 +18,7 @@ import kotlinx.coroutines.launch
 
 class RegisterFragment : Fragment() {
 
-    private lateinit var userDataBase: UserDataBase
-    private val userRepository by lazy { UserRepository(userDataBase) }
+    private val userRepository by lazy { UserRepository(App.userDatabase) }
 
 
     override fun onCreateView(
@@ -38,12 +34,6 @@ class RegisterFragment : Fragment() {
         registerBtn.setOnClickListener { validateProfile() }
         helpTextView.setOnClickListener { showHelp() }
 
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        userDataBase = Room.databaseBuilder(context, UserDataBase::class.java, USERDATABASE_NAME)
-            .build()
     }
 
     private fun validateProfile() {

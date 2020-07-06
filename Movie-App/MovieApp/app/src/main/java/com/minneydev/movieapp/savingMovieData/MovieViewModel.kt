@@ -5,9 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.minneydev.movieapp.data.Movie
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 class MovieViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -25,8 +23,8 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
         repository.insert(movie)
     }
 
-    fun getByTitle(title: String) : Movie = runBlocking {
-        repository.getByTitle(title)
+    fun getByTitle(movieTitle: String) : Movie? = runBlocking {
+        repository.getByTitle(movieTitle)
     }
 
 }

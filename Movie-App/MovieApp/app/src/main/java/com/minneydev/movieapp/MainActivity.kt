@@ -5,11 +5,10 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
-import androidx.room.Room
-import com.minneydev.movieapp.savingUserData.USERDATABASE_NAME
-import com.minneydev.movieapp.savingUserData.UserDataBase
+import com.minneydev.movieapp.data.User
 import com.minneydev.movieapp.savingUserData.UserRepository
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -17,18 +16,18 @@ import kotlinx.coroutines.runBlocking
 //Comment For A Test Commit
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var userDataBase: UserDataBase
-    private val userRepository by lazy { UserRepository(userDataBase) }
-    private val currentUser by lazy { runBlocking  {
-        userRepository.getLoggedInUser(true) } }
+    private val userRepository by lazy { UserRepository(App.userDatabase) }
 
+    private var currentUser: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        userDataBase = Room.databaseBuilder(this, UserDataBase::class.java, USERDATABASE_NAME)
-            .build()
         setContentView(R.layout.activity_main)
         Navigation.findNavController(this, R.id.nav_host_fragment)
+
+        lifecycle.coroutineScope.launch {
+            currentUser = userRepository.getLoggedInUser(true)
+        }
 
     }
 

@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.minneydev.movieapp.R
 import com.minneydev.movieapp.data.Movie
@@ -15,6 +16,8 @@ import com.minneydev.movieapp.savingMovieData.MovieViewModel
 import com.minneydev.movieapp.movieDetailFragment.ui.DetailAdapter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_detail.*
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 class DetailFragment : Fragment() {
 

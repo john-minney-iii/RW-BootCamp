@@ -8,26 +8,29 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import androidx.room.Room
+import com.minneydev.movieapp.App
 import com.minneydev.movieapp.R
 import com.minneydev.movieapp.data.User
 import com.minneydev.movieapp.savingUserData.USERDATABASE_NAME
 import com.minneydev.movieapp.savingUserData.UserDataBase
 import com.minneydev.movieapp.savingUserData.UserRepository
 import kotlinx.android.synthetic.main.fragment_log_in.*
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlin.system.exitProcess
 
 class  LogInFragment : Fragment() {
 
-    private lateinit var userDataBase: UserDataBase
-    private val userRepository by lazy { UserRepository(userDataBase) }
-    private val currentUser by lazy { runBlocking {
+    private val userRepository by lazy { UserRepository(App.userDatabase) }
+    private val currentUser by lazy {lifecycle.coroutineScope.launch {
         userRepository.getLoggedInUser(true)
-    } }
+    }}
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +40,6 @@ class  LogInFragment : Fragment() {
                 closeApp()
             }
         })
-
     }
 
     override fun onCreateView(
@@ -61,12 +63,6 @@ class  LogInFragment : Fragment() {
             goToRegisterScreen()
         }
 
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        userDataBase = Room.databaseBuilder(context, UserDataBase::class.java, USERDATABASE_NAME)
-            .build()
     }
 
     private fun validateLogin() {
