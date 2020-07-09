@@ -1,22 +1,25 @@
-package com.minneydev.movieapp.fragments
+package com.minneydev.movieapp.registerFragment
 
 import android.app.AlertDialog
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import com.minneydev.movieapp.App
 import com.minneydev.movieapp.R
-import com.minneydev.movieapp.manager.UserDataManager
+import com.minneydev.movieapp.savingUserData.UserRepository
 import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.fragment_register.emailEditText
 import kotlinx.android.synthetic.main.fragment_register.passwordEditText
+import kotlinx.coroutines.launch
 
 class RegisterFragment : Fragment() {
 
-    private lateinit var userDataManager: UserDataManager
+    private val userRepository by lazy { UserRepository(App.userDatabase) }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,17 +36,12 @@ class RegisterFragment : Fragment() {
 
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        userDataManager = UserDataManager(context)
-    }
-
     private fun validateProfile() {
         val email = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
         if (validateEmail(email) &&
             validatePassword(password, password2EditText.text.toString())) {
-            saveUser(email, password, true)
+            saveUser(email, password)
             moveToMainScreen()
         }else {
             fail()
@@ -75,8 +73,10 @@ class RegisterFragment : Fragment() {
         }
     }
 
-    private fun saveUser(email: String, password: String, isLoggedIn: Boolean) {
-        userDataManager.saveUserData(email, password, isLoggedIn)
+    private fun saveUser(email: String, password: String) {
+        lifecycleScope.launch {
+            userRepository.newUser(email, password)
+        }
     }
 
     private fun showHelp() {

@@ -1,13 +1,13 @@
 package com.minneydev.movieapp.savingMovieData
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.minneydev.movieapp.data.Movie
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import com.minneydev.movieapp.data.placeHolderMovie
+import kotlinx.coroutines.*
 
 class MovieViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -25,8 +25,18 @@ class MovieViewModel(application: Application) : AndroidViewModel(application) {
         repository.insert(movie)
     }
 
-    fun getByTitle(title: String) : Movie = runBlocking {
-        repository.getByTitle(title)
+    suspend fun getByTitle(movieTitle: String) : Movie? {
+        var movie: Movie? = withContext(Dispatchers.IO) {
+            repository.getByTitle(movieTitle)
+        }
+        if (movie != null) { return movie }
+        return placeHolderMovie
     }
+
+    /*
+        fun getByTitle(movieTitle: String) : Movie? = runBlocking {
+            repository.getByTitle(movieTitle)
+        }
+     */
 
 }

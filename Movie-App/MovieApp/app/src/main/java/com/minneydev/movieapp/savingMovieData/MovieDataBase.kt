@@ -10,8 +10,9 @@ import com.minneydev.movieapp.data.getMoviesArray
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
+const val MOVIEDATABASE_NAME = "movie_database"
 
-@Database (entities = [Movie::class], version = 1, exportSchema = true)
+@Database (entities = [Movie::class], version = 1, exportSchema = false)
 abstract class MovieDataBase : RoomDatabase() {
 
     abstract fun movieDao(): MovieDao
@@ -47,7 +48,7 @@ abstract class MovieDataBase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     MovieDataBase::class.java,
-                    "movie_database"
+                    MOVIEDATABASE_NAME
                 ).addCallback(MovieDatabaseCallback(scope)).build()
                 INSTANCE = instance
                 return instance

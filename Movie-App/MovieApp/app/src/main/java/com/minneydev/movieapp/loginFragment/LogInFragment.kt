@@ -1,4 +1,4 @@
-package com.minneydev.movieapp.fragments
+package com.minneydev.movieapp.loginFragment
 
 import android.app.AlertDialog
 import android.content.Context
@@ -7,29 +7,39 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
+import androidx.room.Room
+import com.minneydev.movieapp.App
 import com.minneydev.movieapp.R
-import com.minneydev.movieapp.manager.UserDataManager
+import com.minneydev.movieapp.data.User
+import com.minneydev.movieapp.savingUserData.USERDATABASE_NAME
+import com.minneydev.movieapp.savingUserData.UserDataBase
+import com.minneydev.movieapp.savingUserData.UserRepository
 import kotlinx.android.synthetic.main.fragment_log_in.*
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlin.system.exitProcess
 
 class  LogInFragment : Fragment() {
 
-    private lateinit var userDataManager: UserDataManager
+    private val userRepository by lazy { UserRepository(App.userDatabase) }
+    private val currentUser by lazy {lifecycle.coroutineScope.launch {
+        userRepository.getLoggedInUser(true)
+    }}
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         activity?.onBackPressedDispatcher?.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (userDataManager.readIsLoggedIn()!!) {
-                    //Not sure if this is the best way to handle it.
-                    Toast.makeText(context,R.string.no_back,Toast.LENGTH_LONG).show();
-                }
+                closeApp()
             }
         })
-
     }
 
     override fun onCreateView(
@@ -42,11 +52,10 @@ class  LogInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        userDataManager.readIsLoggedIn().let {
-            if (it!!) { goToMainScreen() }
-        }
+        if (currentUser != null) { goToMainScreen() }
 
         loginBtn.setOnClickListener {
+//            goToTestFragment()
             validateLogin()
         }
 
@@ -56,22 +65,24 @@ class  LogInFragment : Fragment() {
 
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        userDataManager = UserDataManager(context)
-    }
-
     private fun validateLogin() {
         val email = emailEditText.text.toString()
         val password = passwordEditText.text.toString()
-        if (email == userDataManager.readUserEmail()
-            && password == userDataManager.readUserPassword()) { pass() }
-        else { fail() }
+        lifecycleScope.launch {
+            val fetchedUser = userRepository.getUserByEmail(email)
+            if (fetchedUser != null && password == fetchedUser.password) {
+                pass(fetchedUser)
+            }else {
+                fail()
+            }
+        }
     }
 
-    private fun pass() {
+    private fun pass(user: User) {
+        user.isLoggedIn = true
+        lifecycleScope.launch { userRepository.logInUser(user) }
         goToMainScreen()
-        userDataManager.userLoggedIn()
+
     }
 
     private fun fail() {
@@ -95,6 +106,16 @@ class  LogInFragment : Fragment() {
         view?.let {
             Navigation.findNavController(it).navigate(R.id.action_logInFragment_to_registerFragment)
         }
+    }
+
+    private fun goToTestFragment() {
+        view?.let {
+            Navigation.findNavController(it).navigate(R.id.action_logInFragment_to_testFragment)
+        }
+    }
+
+    private fun closeApp() {
+        exitProcess(0)
     }
 
 }

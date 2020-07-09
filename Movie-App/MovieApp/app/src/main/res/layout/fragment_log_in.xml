@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorGrey"
     android:orientation="vertical"
-    tools:context=".fragments.LogInFragment">
+    tools:context=".loginFragment.LogInFragment">
 
     <ImageView
         android:id="@+id/appLogo"

@@ -5,31 +5,34 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.coroutineScope
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.minneydev.movieapp.data.User
-import com.minneydev.movieapp.manager.UserDataManager
+import com.minneydev.movieapp.savingUserData.UserRepository
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 //Comment For A Test Commit
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var currentUser: User
+    private val userRepository by lazy { UserRepository(App.userDatabase) }
 
-    private val dataManager = UserDataManager(this)
+    private var currentUser: User? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Navigation.findNavController(this, R.id.nav_host_fragment)
 
-        dataManager.readUserData()?.let {
-            currentUser = it
+        lifecycleScope.launch {
+            currentUser = userRepository.getLoggedInUser(true)
         }
 
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        super.onCreateOptionsMenu(menu)
-        menuInflater.inflate(R.menu.app_menu, menu)
+        this.menuInflater.inflate(R.menu.app_menu, menu)
         return true
     }
 
@@ -49,26 +52,23 @@ class MainActivity : AppCompatActivity() {
             .create().show()
     }
 
+    private fun showAccount() {
+        AlertDialog.Builder(this)
+            .setTitle("${currentUser?.email}")
+            .setMessage("${currentUser?.password}")
+            .create().show()
+    }
+
     private fun logOut() {
-        dataManager.logOutUser()
+        currentUser?.isLoggedIn = false
+        lifecycleScope.launch {
+            currentUser.let {
+                userRepository.logOutUser(it)
+            }
+        }
+
         Navigation.findNavController(this, R.id.nav_host_fragment)
             .navigate(R.id.logInFragment)
     }
-
-    private fun showAccount() {
-        if (dataManager.readIsLoggedIn()!!) {
-            val tempString = getString(
-                R.string.account_message,
-                currentUser.email, currentUser.password
-            )
-            AlertDialog.Builder(this)
-                .setTitle(R.string.account_title)
-                .setMessage(tempString)
-                .create().show()
-        }
-    }
-
-
-
 
 }
