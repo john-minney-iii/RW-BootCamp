@@ -4,7 +4,7 @@
     <!-- Main -->
     <dimen name="recycler_view_margin">8dp</dimen>
     <dimen name="card_margin">10dp</dimen>
-    <dimen name="poster_margin">5dp</dimen>
+    <dimen name="poster_margin">0dp</dimen>
 
     <!-- Detail -->
     <dimen name="fab_margin">16dp</dimen>
@@ -16,10 +16,11 @@
     <dimen name="banner_bottom_margin">607dp</dimen>
     <dimen name="banner_height">250dp</dimen>
 
-    <!-- Card -->
+    <!-- Card Detail-->
     <dimen name="card_e">0dp</dimen>
     <dimen name="card_r">15dp</dimen>
-    <dimen name="card_main_r">10dp</dimen>
+    <dimen name="card_main_r">0dp</dimen>
+
 
     <!-- Login/Register Screen -->
     <dimen name="login_page_title_text_size">18sp</dimen>

@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         Navigation.findNavController(this, R.id.nav_host_fragment)
 
-        lifecycle.coroutineScope.launch {
+        lifecycleScope.launch {
             currentUser = userRepository.getLoggedInUser(true)
         }
 

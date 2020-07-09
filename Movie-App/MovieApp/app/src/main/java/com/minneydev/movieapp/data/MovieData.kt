@@ -241,6 +241,15 @@ val pixels = Movie(
     imdb = "https://www.imdb.com/title/tt2120120/"
 )
 
+val placeHolderMovie = Movie(
+    id = 404,
+    releaseDate = "x x, xxxx",
+    title = "Place Holder",
+    summary = "...",
+    posterUrl = "https://www.brownweinraub.com/wp-content/uploads/2017/09/placeholder.jpg",
+    bannerUrl = "https://www.brownweinraub.com/wp-content/uploads/2017/09/placeholder.jpg",
+    imdb = ""
+)
 
 fun getMoviesArray() : List<Movie> {
     return listOf<Movie>(
