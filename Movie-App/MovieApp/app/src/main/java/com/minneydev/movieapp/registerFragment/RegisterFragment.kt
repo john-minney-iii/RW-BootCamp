@@ -6,20 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.minneydev.movieapp.App
 import com.minneydev.movieapp.R
-import com.minneydev.movieapp.savingUserData.UserRepository
 import kotlinx.android.synthetic.main.fragment_register.*
 import kotlinx.android.synthetic.main.fragment_register.emailEditText
 import kotlinx.android.synthetic.main.fragment_register.passwordEditText
-import kotlinx.coroutines.launch
 
 class RegisterFragment : Fragment() {
-
-    private val userRepository by lazy { UserRepository(App.userDatabase) }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -74,9 +68,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun saveUser(email: String, password: String) {
-        lifecycleScope.launch {
-            userRepository.newUser(email, password)
-        }
+        App.userDataManager.saveNewUser(email, password)
     }
 
     private fun showHelp() {
