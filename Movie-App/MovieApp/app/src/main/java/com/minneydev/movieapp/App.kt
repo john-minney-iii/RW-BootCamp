@@ -1,15 +1,13 @@
 package com.minneydev.movieapp
 
 import android.app.Application
-import androidx.room.Room
-import com.minneydev.movieapp.savingUserData.USERDATABASE_NAME
-import com.minneydev.movieapp.savingUserData.UserDataBase
+import com.minneydev.movieapp.userSharedPrefs.UserSharedPreferences
 
 class App : Application() {
 
     companion object {
         private lateinit var instance: App
-        lateinit var userDatabase: UserDataBase
+        lateinit var userDataManager: UserSharedPreferences
         fun getAppContext() = instance
     }
 
@@ -20,8 +18,7 @@ class App : Application() {
     }
 
     private fun initRoomUser() {
-        userDatabase = Room.databaseBuilder(this, UserDataBase::class.java, USERDATABASE_NAME)
-            .build()
+        userDataManager = UserSharedPreferences(this)
     }
 
 

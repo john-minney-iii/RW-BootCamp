@@ -5,30 +5,20 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.coroutineScope
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.minneydev.movieapp.data.User
-import com.minneydev.movieapp.savingUserData.UserRepository
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 //Comment For A Test Commit
 class MainActivity : AppCompatActivity() {
 
-    private val userRepository by lazy { UserRepository(App.userDatabase) }
+//    private val userRepository by lazy { UserRepository(App.userDatabase) }
 
-    private var currentUser: User? = null
+    private var currentUser: User? = App.userDataManager.getLoggedInUser()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         Navigation.findNavController(this, R.id.nav_host_fragment)
-
-        lifecycleScope.launch {
-            currentUser = userRepository.getLoggedInUser(true)
-        }
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -61,11 +51,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun logOut() {
         currentUser?.isLoggedIn = false
-        lifecycleScope.launch {
-            currentUser.let {
-                userRepository.logOutUser(it)
-            }
-        }
+
+        App.userDataManager.logOutUser()
+
 
         Navigation.findNavController(this, R.id.nav_host_fragment)
             .navigate(R.id.logInFragment)
