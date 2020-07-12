@@ -8,7 +8,9 @@ import com.minneydev.apiassignment.R
 import com.minneydev.apiassignment.models.Pokemon
 import com.squareup.picasso.Picasso
 
-class PokemonAdapter(private val pokeSet: Set<Pokemon?>) : RecyclerView.Adapter<PokemonHolder>() {
+class PokemonAdapter() : RecyclerView.Adapter<PokemonHolder>() {
+
+    private val pokeSet = mutableSetOf<Pokemon>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonHolder {
         val view = LayoutInflater.from(parent.context)
@@ -22,12 +24,17 @@ class PokemonAdapter(private val pokeSet: Set<Pokemon?>) : RecyclerView.Adapter<
 
     override fun onBindViewHolder(holder: PokemonHolder, position: Int) {
         val currentPokemon = pokeSet.elementAt(position)
-        holder.pokemonName.text = currentPokemon?.name?.capitalize()
-        Picasso.get().load(currentPokemon?.sprites?.frontDefault)
+        holder.pokemonName.text = currentPokemon.name?.capitalize()
+        Picasso.get().load(currentPokemon.sprites.frontDefault)
             .resize(500,500)
             .into(holder.pokemonSprite)
-        Log.d("TEST", "${currentPokemon?.name?.capitalize()}" +
-                ",${currentPokemon?.types?.get(0)?.type?.name}")
+        Log.d("TEST", "${currentPokemon.name}" +
+                ",${currentPokemon.types[0].type.name}")
+    }
+
+    fun setPokemon(pokemon: Pokemon) {
+        pokeSet.add(pokemon)
+        notifyDataSetChanged()
     }
 
 }
