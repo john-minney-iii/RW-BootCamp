@@ -5,7 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.minneydev.apiassignment.R
-import com.minneydev.apiassignment.models.Pokemon
+import com.minneydev.apiassignment.models.pokemon.ApiPokemon
+import com.minneydev.apiassignment.models.pokemon.Pokemon
 import com.squareup.picasso.Picasso
 
 class PokemonAdapter() : RecyclerView.Adapter<PokemonHolder>() {
@@ -25,15 +26,17 @@ class PokemonAdapter() : RecyclerView.Adapter<PokemonHolder>() {
     override fun onBindViewHolder(holder: PokemonHolder, position: Int) {
         val currentPokemon = pokeSet.elementAt(position)
         holder.pokemonName.text = currentPokemon.name?.capitalize()
-        Picasso.get().load(currentPokemon.sprites.frontDefault)
+        Picasso.get().load(currentPokemon.sprite_url)
             .resize(500,500)
             .into(holder.pokemonSprite)
         Log.d("TEST", "${currentPokemon.name}" +
-                ",${currentPokemon.types[0].type.name}")
+                ",${currentPokemon.type}")
     }
 
-    fun setPokemon(pokemon: Pokemon) {
-        pokeSet.add(pokemon)
+    fun setPokemon(pokemon: Pokemon?) {
+        if (pokemon != null) {
+            pokeSet.add(pokemon)
+        }
         notifyDataSetChanged()
     }
 
