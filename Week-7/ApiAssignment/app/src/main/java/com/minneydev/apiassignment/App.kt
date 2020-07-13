@@ -22,6 +22,7 @@ class App : Application() {
             PokemonDatabase::class.java,
             "pokemon-database"
         ).build()
+
     }
 
 }

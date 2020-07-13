@@ -3,4 +3,5 @@
     <string name="about_menu">About</string>
     <string name="about_title">PokeDex App</string>
     <string name="about_message">Created by John Minney III</string>
+    <string name="refresh">Refresh</string>
 </resources>

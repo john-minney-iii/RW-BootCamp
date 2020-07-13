@@ -25,9 +25,7 @@ class PokemonAdapter() : RecyclerView.Adapter<PokemonHolder>() {
 
     override fun onBindViewHolder(holder: PokemonHolder, position: Int) {
         val currentPokemon = pokeSet.elementAt(position)
-        holder.bindPokemon(currentPokemon)
-        Log.d("TEST", currentPokemon.name +
-                ",${currentPokemon.type}")
+        holder.bindPokemon(currentPokemon, getTypeColor(currentPokemon.type))
     }
 
     fun setPokemon(pokemon: Pokemon?) {
@@ -35,6 +33,27 @@ class PokemonAdapter() : RecyclerView.Adapter<PokemonHolder>() {
             pokeSet.add(pokemon)
         }
         notifyDataSetChanged()
+    }
+
+    private fun getTypeColor(type: String) : Int {
+        return when (type) {
+            "bug" -> R.color.bugType
+            "dragon" -> R.color.dragonType
+            "electric" -> R.color.electricType
+            "fighting" -> R.color.fightingType
+            "fire" -> R.color.fireType
+            "flying" -> R.color.flyingType
+            "ghost" -> R.color.ghostType
+            "grass" -> R.color.grassType
+            "ground" -> R.color.groundType
+            "ice" -> R.color.iceType
+            "normal" -> R.color.normalType
+            "poison" -> R.color.poisonType
+            "psychic" -> R.color.psychicType
+            "rock" -> R.color.rockType
+            "water" -> R.color.waterType
+            else -> R.color.normalType
+        }
     }
 
 }

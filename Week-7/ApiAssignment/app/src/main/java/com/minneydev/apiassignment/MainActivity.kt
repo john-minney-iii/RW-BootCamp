@@ -1,8 +1,10 @@
 package com.minneydev.apiassignment
 
+import android.content.Context
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
@@ -18,6 +20,11 @@ import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
 
+    companion object {
+        lateinit var mainContext: Context
+    }
+
+    private val numPokemon = 151
     private val adapter = PokemonAdapter()
     private val networkStatusChecker by lazy {
         NetworkStatusChecker(this.getSystemService(ConnectivityManager::class.java))
@@ -27,17 +34,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         pokemonRecyclerView.layoutManager = LinearLayoutManager(this)
+        mainContext = this
 
-        networkStatusChecker.performIfConnectedToInternet {
-            CoroutineScope(Dispatchers.IO).launch {
-                with(App.pokemonDb.pokemonDao().getAllPokemon()) {
-                    if (this.isEmpty()) {
+        CoroutineScope(Dispatchers.IO).launch {
+
+            with (App.pokemonDb.pokemonDao().getAllPokemon()) {
+                if (this.isEmpty() || this.size < numPokemon) {
+                    networkStatusChecker.performIfConnectedToInternet {
                         getFirstGen()
-                    } else {
-                        runOnUiThread { placeOnRecyclerView(this.toSet()) }
                     }
+                }else {
+                    runOnUiThread { placeOnRecyclerView(this.toSet()) }
                 }
             }
+
         }
 
         pokemonRecyclerView.adapter = adapter
@@ -45,7 +55,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private suspend fun getFirstGen() {
-        for (i in 1..151) {
+        for (i in 1..numPokemon) {
             onPokemonReceived(App.pokemonApi.fetchPokemonById("$i"))
         }
     }
