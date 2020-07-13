@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
 
             with (App.pokemonDb.pokemonDao().getAllPokemon()) {
-                if (this.isEmpty() || this.size < numPokemon) {
+                if (this.isEmpty() || this.size < numPokemon || this.size > numPokemon) {
                     networkStatusChecker.performIfConnectedToInternet {
                         getFirstGen()
                     }
@@ -62,7 +62,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun onPokemonReceived(pokemon: ApiPokemon?) {
         if (pokemon != null) {
-            runOnUiThread { adapter.setPokemon(savePokemon(pokemon)) }
+            val tempPokemon = savePokemon(pokemon)
+            runOnUiThread { adapter.setPokemon(tempPokemon) }
         }
     }
 

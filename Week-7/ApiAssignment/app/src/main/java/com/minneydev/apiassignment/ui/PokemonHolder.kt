@@ -29,16 +29,9 @@ class PokemonHolder(private val view: View) : RecyclerView.ViewHolder(view) {
             ContextCompat.getColor(mainContext, typeColor)
         )
         pokemonName.text = pokemon.name.capitalize()
-
-        Picasso.get().load(pokemon.sprite_url)
-            .resize(500,500)
+        Glide.with(view).load(pokemon.sprite_url)
+            .apply(RequestOptions().override(500, 500).fitCenter())
             .into(pokemonSprite)
-
-
-
-//        Glide.with(view).load(pokemon.sprite_url)
-//            .apply(RequestOptions().override(500,500))
-//            .into(pokemonSprite)
     }
 
 
