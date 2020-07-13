@@ -1,10 +1,13 @@
 package com.minneydev.apiassignment
 
+import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.minneydev.apiassignment.models.pokemon.ApiPokemon
 import com.minneydev.apiassignment.models.pokemon.Pokemon
+import com.minneydev.apiassignment.networking.NetworkStatusChecker
 import com.minneydev.apiassignment.ui.PokemonAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
@@ -12,16 +15,24 @@ import kotlinx.coroutines.*
 class MainActivity : AppCompatActivity() {
 
     private val adapter = PokemonAdapter()
+    private val networkStatusChecker by lazy {
+        NetworkStatusChecker(this.getSystemService(ConnectivityManager::class.java))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         pokemonRecyclerView.layoutManager = LinearLayoutManager(this)
 
-        CoroutineScope(Dispatchers.IO).launch {
-            with (App.pokemonDb.pokemonDao().getAllPokemon()) {
-                if (this.isEmpty()) { getFirstGen() }
-                else { runOnUiThread { placeOnRecyclerView(this.toSet()) } }
+        networkStatusChecker.performIfConnectedToInternet {
+            CoroutineScope(Dispatchers.IO).launch {
+                with(App.pokemonDb.pokemonDao().getAllPokemon()) {
+                    if (this.isEmpty()) {
+                        getFirstGen()
+                    } else {
+                        runOnUiThread { placeOnRecyclerView(this.toSet()) }
+                    }
+                }
             }
         }
 
@@ -59,6 +70,5 @@ class MainActivity : AppCompatActivity() {
         }
         return tempPokemon
     }
-
 
 }

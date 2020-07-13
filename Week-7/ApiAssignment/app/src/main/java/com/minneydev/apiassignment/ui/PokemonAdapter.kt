@@ -29,7 +29,7 @@ class PokemonAdapter() : RecyclerView.Adapter<PokemonHolder>() {
         Picasso.get().load(currentPokemon.sprite_url)
             .resize(500,500)
             .into(holder.pokemonSprite)
-        Log.d("TEST", "${currentPokemon.name}" +
+        Log.d("TEST", currentPokemon.name +
                 ",${currentPokemon.type}")
     }
 
