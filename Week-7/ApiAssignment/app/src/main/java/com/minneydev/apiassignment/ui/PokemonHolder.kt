@@ -12,15 +12,14 @@ import com.minneydev.apiassignment.models.pokemon.Pokemon
 
 class PokemonHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
-    val pokemonName: TextView = view.findViewById(R.id.pokemonName)
-    val pokemonSprite: ImageView = view.findViewById(R.id.pokemonSprite)
+    private val pokemonName: TextView = view.findViewById(R.id.pokemonName)
+    private val pokemonSprite: ImageView = view.findViewById(R.id.pokemonSprite)
 
     fun bindPokemon(pokemon: Pokemon) {
         pokemonName.text = pokemon.name.capitalize()
         Glide.with(view).load(pokemon.sprite_url)
             .apply(RequestOptions().override(500,500))
             .into(pokemonSprite)
-
     }
 
 

@@ -3,6 +3,10 @@ package com.minneydev.apiassignment
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.ContextMenu
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.minneydev.apiassignment.models.pokemon.ApiPokemon
@@ -69,6 +73,26 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return tempPokemon
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        this.menuInflater.inflate(R.menu.about_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.aboutMenu -> showAbout()
+        }
+        return true
+    }
+
+    private fun showAbout() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.about_title)
+            .setMessage(R.string.about_message)
+            .create().show()
     }
 
 }
