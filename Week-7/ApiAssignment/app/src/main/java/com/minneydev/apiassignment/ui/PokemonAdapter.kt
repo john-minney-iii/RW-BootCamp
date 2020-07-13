@@ -25,10 +25,7 @@ class PokemonAdapter() : RecyclerView.Adapter<PokemonHolder>() {
 
     override fun onBindViewHolder(holder: PokemonHolder, position: Int) {
         val currentPokemon = pokeSet.elementAt(position)
-        holder.pokemonName.text = currentPokemon.name?.capitalize()
-        Picasso.get().load(currentPokemon.sprite_url)
-            .resize(500,500)
-            .into(holder.pokemonSprite)
+        holder.bindPokemon(currentPokemon)
         Log.d("TEST", currentPokemon.name +
                 ",${currentPokemon.type}")
     }
