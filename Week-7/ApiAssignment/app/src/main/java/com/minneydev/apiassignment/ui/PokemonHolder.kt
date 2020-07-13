@@ -1,6 +1,5 @@
 package com.minneydev.apiassignment.ui
 
-import android.content.res.Resources
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -12,11 +11,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.minneydev.apiassignment.MainActivity.Companion.mainContext
 import com.minneydev.apiassignment.R
 import com.minneydev.apiassignment.models.pokemon.Pokemon
-import com.squareup.picasso.Picasso
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.DisposableHandle
-import kotlinx.coroutines.launch
 
 class PokemonHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 

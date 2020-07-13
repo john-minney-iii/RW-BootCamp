@@ -1,9 +1,8 @@
 package com.minneydev.apiassignment.networking
 
-import android.app.AlertDialog
+
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
-import com.minneydev.apiassignment.MainActivity
 
 class NetworkStatusChecker(private val connectivityManager: ConnectivityManager?) {
 

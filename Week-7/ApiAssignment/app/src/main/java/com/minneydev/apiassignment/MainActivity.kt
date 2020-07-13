@@ -4,11 +4,8 @@ import android.content.Context
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CountDownTimer
-import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.minneydev.apiassignment.models.pokemon.ApiPokemon
@@ -63,6 +60,7 @@ class MainActivity : AppCompatActivity() {
     private fun onPokemonReceived(pokemon: ApiPokemon?) {
         if (pokemon != null) {
             val tempPokemon = savePokemon(pokemon)
+            // Why did I have savePokemon on the UiThread. No wonder why it was loading slow
             runOnUiThread { adapter.setPokemon(tempPokemon) }
         }
     }

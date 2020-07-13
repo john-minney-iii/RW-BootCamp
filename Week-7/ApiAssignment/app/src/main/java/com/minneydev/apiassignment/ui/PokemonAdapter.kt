@@ -1,13 +1,10 @@
 package com.minneydev.apiassignment.ui
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.minneydev.apiassignment.R
-import com.minneydev.apiassignment.models.pokemon.ApiPokemon
 import com.minneydev.apiassignment.models.pokemon.Pokemon
-import com.squareup.picasso.Picasso
 
 class PokemonAdapter() : RecyclerView.Adapter<PokemonHolder>() {
 
