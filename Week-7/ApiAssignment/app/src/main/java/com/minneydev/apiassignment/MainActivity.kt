@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.minneydev.apiassignment.models.pokemon.ApiPokemon
 import com.minneydev.apiassignment.models.pokemon.Pokemon
@@ -19,9 +20,9 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         lateinit var mainContext: Context
+        private const val NUM_POKEMON = 151
     }
 
-    private val numPokemon = 151
     private val adapter = PokemonAdapter()
     private val networkStatusChecker by lazy {
         NetworkStatusChecker(this.getSystemService(ConnectivityManager::class.java))
@@ -33,26 +34,24 @@ class MainActivity : AppCompatActivity() {
         pokemonRecyclerView.layoutManager = LinearLayoutManager(this)
         mainContext = this
 
-        CoroutineScope(Dispatchers.IO).launch {
-
-            with (App.pokemonDb.pokemonDao().getAllPokemon()) {
-                if (this.isEmpty() || this.size < numPokemon || this.size > numPokemon) {
-                    networkStatusChecker.performIfConnectedToInternet {
-                        getFirstGen()
-                    }
-                }else {
-                    runOnUiThread { placeOnRecyclerView(this.toSet()) }
+        CoroutineScope(Dispatchers.IO).launch {//Change this to lifecycleScope?
+            val pokemonList: List<Pokemon> = App.pokemonDb.pokemonDao().getAllPokemon()
+            if (pokemonList.isEmpty() || pokemonList.size < NUM_POKEMON || pokemonList.size > NUM_POKEMON) {
+                networkStatusChecker.performIfConnectedToInternet {
+                    getFirstGen()
                 }
+            }else {
+                withContext(Dispatchers.Main) { placeOnRecyclerView(pokemonList.toSet()) }
             }
-
         }
 
         pokemonRecyclerView.adapter = adapter
 
     }
 
+    //Figure out how to fetch without doing 151 api calls.
     private suspend fun getFirstGen() {
-        for (i in 1..numPokemon) {
+        for (i in 1..NUM_POKEMON) {
             onPokemonReceived(App.pokemonApi.fetchPokemonById("$i"))
         }
     }
@@ -73,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun savePokemon(pokemon: ApiPokemon?) : Pokemon? {
         val tempPokemon = pokemon?.let {
-            Pokemon(id = it.id!!, name = it.name!!, sprite_url = it.sprites.frontDefault,
+            Pokemon(id = it.id, name = it.name, sprite_url = it.sprites.frontDefault,
                     type = it.types[0].type.name)
         }
         if (tempPokemon != null) {

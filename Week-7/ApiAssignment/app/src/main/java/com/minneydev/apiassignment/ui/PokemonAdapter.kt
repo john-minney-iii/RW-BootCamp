@@ -16,9 +16,7 @@ class PokemonAdapter() : RecyclerView.Adapter<PokemonHolder>() {
         return PokemonHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        return pokeSet.size
-    }
+    override fun getItemCount() = pokeSet.size
 
     override fun onBindViewHolder(holder: PokemonHolder, position: Int) {
         val currentPokemon = pokeSet.elementAt(position)

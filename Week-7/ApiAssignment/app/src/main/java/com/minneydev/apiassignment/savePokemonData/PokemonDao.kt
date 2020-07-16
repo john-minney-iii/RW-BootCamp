@@ -13,7 +13,7 @@ interface PokemonDao {
     suspend fun insertPokemon(pokemon: Pokemon)
 
     @Query("SELECT * FROM pokemon_table")
-    fun getAllPokemon(): List<Pokemon>
+    suspend fun getAllPokemon(): List<Pokemon>
 
 
 }
