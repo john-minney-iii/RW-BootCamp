@@ -12,6 +12,7 @@ import com.minneydev.pokedex.model.pokemon.ApiPokemon
 import com.minneydev.pokedex.model.pokemon.Pokemon
 import com.minneydev.pokedex.networking.NetworkStatusChecker
 import com.minneydev.pokedex.ui.PokemonAdapter
+import com.minneydev.pokedex.util.PokemonManager
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
 
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     private val networkStatusChecker by lazy {
         NetworkStatusChecker(this.getSystemService(ConnectivityManager::class.java))
     }
+    private val pokemonManager by lazy { PokemonManager() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun onPokemonReceived(pokemon: ApiPokemon?) {
         if (pokemon != null) {
-            val tempPokemon = savePokemon(pokemon)
+            val tempPokemon = pokemonManager.savePokemon(pokemon)
             // Why did I have savePokemon on the UiThread. No wonder why it was loading slow
             runOnUiThread { adapter.setPokemon(tempPokemon) }
         }
@@ -68,20 +70,6 @@ class MainActivity : AppCompatActivity() {
             adapter.setPokemon(it)
         }
     }
-
-    private fun savePokemon(pokemon: ApiPokemon?) : Pokemon? {
-        val tempPokemon = pokemon?.let {
-            Pokemon(id = it.id, name = it.name, sprite_url = it.sprites.frontDefault,
-                    type = it.types[0].type.name)
-        }
-        if (tempPokemon != null) {
-            CoroutineScope(Dispatchers.IO).launch {
-                App.pokemonDb.pokemonDao().insertPokemon(tempPokemon)
-            }
-        }
-        return tempPokemon
-    }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         this.menuInflater.inflate(R.menu.about_menu, menu)
