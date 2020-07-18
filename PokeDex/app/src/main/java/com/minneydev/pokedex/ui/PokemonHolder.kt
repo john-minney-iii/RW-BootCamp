@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.minneydev.pokedex.MainActivity.Companion.mainContext
+import com.minneydev.pokedex.App
 import com.minneydev.pokedex.R
 import com.minneydev.pokedex.model.pokemon.Pokemon
 
@@ -20,7 +20,7 @@ class PokemonHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
     fun bindPokemon(pokemon: Pokemon, typeColor: Int) {
         pokemonLL.setBackgroundColor(
-            ContextCompat.getColor(mainContext, typeColor)
+            ContextCompat.getColor(App.getAppContext(), typeColor)
         )
         pokemonName.text = pokemon.name.capitalize()
         Glide.with(view).load(pokemon.sprite_url)

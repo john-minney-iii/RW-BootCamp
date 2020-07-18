@@ -4,4 +4,6 @@
     <string name="about_title">PokeDex App</string>
     <string name="about_message">Created by John Minney III</string>
     <string name="refresh">Refresh</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
