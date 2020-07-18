@@ -22,4 +22,14 @@ class PokemonManager {
         return tempPokemon
     }
 
+    fun getFirstId(gen: Int) : String {
+        return when (gen) {
+            1 -> "1"
+            2 -> "152"
+            3 -> "252"
+            4 -> "387"
+            else -> "0"
+        }
+    }
+
 }

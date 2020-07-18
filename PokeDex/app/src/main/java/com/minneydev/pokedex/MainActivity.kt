@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -14,10 +15,10 @@ import androidx.work.Constraints
 import androidx.work.NetworkType
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
-import com.minneydev.pokedex.App.Companion.NUM_POKEMON
 import com.minneydev.pokedex.model.pokemon.Pokemon
 import com.minneydev.pokedex.networking.NetworkStatusChecker
 import com.minneydev.pokedex.ui.PokemonAdapter
+import com.minneydev.pokedex.util.PokemonManager
 import com.minneydev.pokedex.worker.DownloadPokemonWorker
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
@@ -26,11 +27,14 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private val adapter = PokemonAdapter()
+        var currentGen: Int = 3
         fun setPokemon(pokemon: Pokemon) { adapter.setPokemon(pokemon) }
     }
+
     private val networkStatusChecker by lazy {
         NetworkStatusChecker(this.getSystemService(ConnectivityManager::class.java))
     }
+    private val pokemonManager by lazy { PokemonManager() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,6 +62,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun clearRecyclerView() {
+        adapter.clear()
+    }
+
     private fun placeOnRecyclerView(pokemon: Set<Pokemon>) {
         pokemon.forEach {
             adapter.setPokemon(it)
@@ -77,26 +85,31 @@ class MainActivity : AppCompatActivity() {
 
         val workManager = WorkManager.getInstance(this)
         workManager.enqueue(downloadRequest)
-
-        workManager.getWorkInfoByIdLiveData(downloadRequest.id).observe(this, Observer {
-            if (it.state.isFinished) {
-                showPokemonInDatabase()
-            }
-        })
-
     }
 
 //    Menu Code ------------------------------------------------------------------------------------
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        this.menuInflater.inflate(R.menu.about_menu, menu)
+        this.menuInflater.inflate(R.menu.menu, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.aboutMenu -> showAbout()
+            R.id.genOne -> showGeneration(1)
+            R.id.genTwo -> showGeneration(2)
+            R.id.genThree -> showGeneration(3)
+            R.id.genFour -> showGeneration(4)
         }
         return true
+    }
+
+    private fun showGeneration(gen: Int) {
+        currentGen = gen
+        clearRecyclerView()
+        lifecycleScope.launch {App.pokemonDb.pokemonDao().nukeTable()}
+        downloadPokemon()
+        Toast.makeText(applicationContext,"Now Showing Gen $gen",Toast.LENGTH_SHORT).show()
     }
 
     private fun showAbout() {

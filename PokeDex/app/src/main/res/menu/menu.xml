@@ -7,5 +7,17 @@
         android:icon="@android:drawable/ic_menu_info_details"
         android:title="@string/about_menu"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/genOne"
+        android:title="@string/gen_one" />
+    <item
+        android:id="@+id/genTwo"
+        android:title="@string/gen_two" />
+    <item
+        android:id="@+id/genThree"
+        android:title="@string/gen_three" />
+    <item
+        android:id="@+id/genFour"
+        android:title="@string/gen_four" />
 
 </menu>

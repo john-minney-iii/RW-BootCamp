@@ -15,10 +15,16 @@ class DownloadPokemonWorker(context: Context, workerParameters: WorkerParameters
     private val pokemonManager by lazy { PokemonManager() }
 
     override fun doWork(): Result {
-        getFirstGen()
+        when (MainActivity.currentGen) {
+            1 -> getFirstGen()
+            2 -> getSecondGen()
+            3 -> getThirdGen()
+            4 -> getForthGen()
+        }
         Log.d("DO-WORK", "FINISHED")
         return Result.success()
     }
+
 
     private fun getFirstGen() {
         CoroutineScope(Dispatchers.Main).launch {
@@ -32,6 +38,47 @@ class DownloadPokemonWorker(context: Context, workerParameters: WorkerParameters
                 }
         }
     }
+
+    private fun getSecondGen() {
+        CoroutineScope(Dispatchers.Main).launch {
+            for (i in 152..251) {
+                with (App.pokemonApi.fetchPokemonById("$i")) {
+                    pokemonManager.savePokemon(this)?.let {pokemon ->
+                        MainActivity.setPokemon(pokemon)
+                    }
+                    Log.d("SAVING", "$i: ${this?.name}")
+                }
+            }
+        }
+    }
+
+    private fun getThirdGen() {
+        CoroutineScope(Dispatchers.Main).launch {
+            for (i in 252..386) {
+                with (App.pokemonApi.fetchPokemonById("$i")) {
+                    pokemonManager.savePokemon(this)?.let {pokemon ->
+                        MainActivity.setPokemon(pokemon)
+                    }
+                    Log.d("SAVING", "$i: ${this?.name}")
+                }
+            }
+        }
+    }
+
+    private fun getForthGen() {
+        CoroutineScope(Dispatchers.Main).launch {
+            for (i in 387..494) {
+                with (App.pokemonApi.fetchPokemonById("$i")) {
+                    pokemonManager.savePokemon(this)?.let {pokemon ->
+                        MainActivity.setPokemon(pokemon)
+                    }
+                    Log.d("SAVING", "$i: ${this?.name}")
+                }
+            }
+        }
+    }
+
+
 
 
 

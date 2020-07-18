@@ -30,6 +30,11 @@ class PokemonAdapter() : RecyclerView.Adapter<PokemonHolder>() {
         notifyDataSetChanged()
     }
 
+    fun clear() {
+        pokeSet.clear()
+        notifyDataSetChanged()
+    }
+
     private fun getTypeColor(type: String) : Int {
         return when (type) {
             "bug" -> R.color.bugType
