@@ -11,23 +11,22 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.work.Constraints
-import androidx.work.NetworkType
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
+import androidx.work.*
 import com.minneydev.pokedex.model.pokemon.Pokemon
 import com.minneydev.pokedex.networking.NetworkStatusChecker
 import com.minneydev.pokedex.ui.PokemonAdapter
 import com.minneydev.pokedex.util.PokemonManager
 import com.minneydev.pokedex.worker.DownloadPokemonWorker
+import com.minneydev.pokedex.worker.RefreshPokemonWorker
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
         private val adapter = PokemonAdapter()
-        var currentGen: Int = 3
+        var currentGen: Int = 1
         fun setPokemon(pokemon: Pokemon) { adapter.setPokemon(pokemon) }
     }
 
@@ -42,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         pokemonRecyclerView.layoutManager = LinearLayoutManager(this)
         lifecycleScope.launch {
             val pokemonList: List<Pokemon> = App.pokemonDb.pokemonDao().getAllPokemon()
-            pokemonList.forEach { Log.d("TEST", "$it") }
+            pokemonList.forEach { Log.d(App.TAG, "$it") }
             if (pokemonList.isNotEmpty()) {
                 withContext(Dispatchers.Main) { placeOnRecyclerView(pokemonList.toSet()) }
             }else {
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         pokemonRecyclerView.adapter = adapter
-
+        startPeriodicRefresh()
     }
 
     private fun showPokemonInDatabase() {
@@ -86,6 +85,24 @@ class MainActivity : AppCompatActivity() {
         val workManager = WorkManager.getInstance(this)
         workManager.enqueue(downloadRequest)
     }
+
+    private fun startPeriodicRefresh() {
+        val constraints = Constraints.Builder()
+            .setRequiresBatteryNotLow(true)
+            .setRequiredNetworkType(NetworkType.NOT_ROAMING)
+            .setRequiresStorageNotLow(true)
+            .build()
+
+        val periodicRefresh = PeriodicWorkRequestBuilder<RefreshPokemonWorker>(15, TimeUnit.HOURS)
+            .setConstraints(constraints)
+            .build()
+
+        val refreshManager = WorkManager.getInstance(this)
+        refreshManager.enqueueUniquePeriodicWork("REFRESH",
+            ExistingPeriodicWorkPolicy.REPLACE, periodicRefresh)
+
+    }
+
 
 //    Menu Code ------------------------------------------------------------------------------------
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
