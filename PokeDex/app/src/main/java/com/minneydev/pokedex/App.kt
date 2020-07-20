@@ -14,7 +14,6 @@ class App : Application() {
         const val TAG = "PokeDex"
         const val DOWNLOAD_WORKER = "DOWNLOAD"
         const val REFRESH_WORKER = "REFRESH"
-        const val NUM_POKEMON = 151
         private val apiService by lazy { buildApiService() }
         val pokemonApi by lazy { PokemonApi(apiService) }
         lateinit var pokemonDb: PokemonDatabase

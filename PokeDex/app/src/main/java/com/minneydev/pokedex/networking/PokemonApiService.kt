@@ -1,8 +1,6 @@
 package com.minneydev.pokedex.networking
 
 import com.minneydev.pokedex.model.pokemon.ApiPokemon
-import com.minneydev.pokedex.model.pokemon.Pokemon
-import com.minneydev.pokedex.model.pokemon.PokemonListCall
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

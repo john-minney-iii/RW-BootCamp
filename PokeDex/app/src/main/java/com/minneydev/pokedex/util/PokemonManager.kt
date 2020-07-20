@@ -1,13 +1,8 @@
 package com.minneydev.pokedex.util
 
 
-import android.content.Context
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
 import androidx.work.*
 import com.minneydev.pokedex.App
-import com.minneydev.pokedex.MainActivity
 import com.minneydev.pokedex.model.pokemon.ApiPokemon
 import com.minneydev.pokedex.model.pokemon.Pokemon
 import com.minneydev.pokedex.worker.DownloadPokemonWorker

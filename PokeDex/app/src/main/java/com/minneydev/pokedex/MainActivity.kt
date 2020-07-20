@@ -8,21 +8,15 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.work.*
 import com.minneydev.pokedex.model.pokemon.Pokemon
 import com.minneydev.pokedex.networking.NetworkStatusChecker
 import com.minneydev.pokedex.ui.PokemonAdapter
 import com.minneydev.pokedex.util.PokemonManager
-import com.minneydev.pokedex.worker.DownloadPokemonWorker
-import com.minneydev.pokedex.worker.RefreshPokemonWorker
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
-import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
