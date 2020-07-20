@@ -46,12 +46,12 @@ class MainActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main) { placeOnRecyclerView(pokemonList.toSet()) }
             }else {
                 networkStatusChecker.performIfConnectedToInternet {
-                    downloadPokemon()
+                    pokemonManager.downloadPokemon()
                 }
             }
         }
         pokemonRecyclerView.adapter = adapter
-        startPeriodicRefresh()
+        pokemonManager.startPeriodicRefresh()
     }
 
     private fun showPokemonInDatabase() {
@@ -69,38 +69,6 @@ class MainActivity : AppCompatActivity() {
         pokemon.forEach {
             adapter.setPokemon(it)
         }
-    }
-
-    private fun downloadPokemon() {
-        val constraints = Constraints.Builder()
-            .setRequiresBatteryNotLow(true)
-            .setRequiresStorageNotLow(true)
-            .setRequiredNetworkType(NetworkType.NOT_ROAMING)
-            .build()
-
-        val downloadRequest = OneTimeWorkRequestBuilder<DownloadPokemonWorker>()
-            .setConstraints(constraints)
-            .build()
-
-        val workManager = WorkManager.getInstance(this)
-        workManager.enqueue(downloadRequest)
-    }
-
-    private fun startPeriodicRefresh() {
-        val constraints = Constraints.Builder()
-            .setRequiresBatteryNotLow(true)
-            .setRequiredNetworkType(NetworkType.NOT_ROAMING)
-            .setRequiresStorageNotLow(true)
-            .build()
-
-        val periodicRefresh = PeriodicWorkRequestBuilder<RefreshPokemonWorker>(15, TimeUnit.HOURS)
-            .setConstraints(constraints)
-            .build()
-
-        val refreshManager = WorkManager.getInstance(this)
-        refreshManager.enqueueUniquePeriodicWork("REFRESH",
-            ExistingPeriodicWorkPolicy.REPLACE, periodicRefresh)
-
     }
 
 
@@ -125,7 +93,7 @@ class MainActivity : AppCompatActivity() {
         currentGen = gen
         clearRecyclerView()
         lifecycleScope.launch {App.pokemonDb.pokemonDao().nukeTable()}
-        downloadPokemon()
+        pokemonManager.downloadPokemon()
         Toast.makeText(applicationContext,"Now Showing Gen $gen",Toast.LENGTH_SHORT).show()
     }
 

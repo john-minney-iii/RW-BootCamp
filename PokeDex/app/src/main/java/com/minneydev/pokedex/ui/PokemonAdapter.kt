@@ -35,7 +35,7 @@ class PokemonAdapter() : RecyclerView.Adapter<PokemonHolder>() {
         notifyDataSetChanged()
     }
 
-    //This doens't have all the types for Gen 2,3,4. I'll have to come back and add them.
+    //This doesn't have all the types for Gen 2,3,4. I'll have to come back and add them.
     private fun getTypeColor(type: String) : Int {
         return when (type) {
             "bug" -> R.color.bugType
