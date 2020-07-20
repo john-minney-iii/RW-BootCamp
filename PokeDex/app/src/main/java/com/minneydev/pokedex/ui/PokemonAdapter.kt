@@ -53,6 +53,9 @@ class PokemonAdapter() : RecyclerView.Adapter<PokemonHolder>() {
             "psychic" -> R.color.psychicType
             "rock" -> R.color.rockType
             "water" -> R.color.waterType
+            "steel" -> R.color.steelType
+            "dark" -> R.color.darkType
+            "fairy" -> R.color.fairyType
             else -> R.color.normalType
         }
     }
