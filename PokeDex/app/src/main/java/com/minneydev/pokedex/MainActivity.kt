@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main) { placeOnRecyclerView(pokemonList.toSet()) }
             }else {
                 networkStatusChecker.performIfConnectedToInternet {
-                    Toast.makeText(applicationContext,"Downloading Pokemon...", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext,getString(R.string.downloading_toast), Toast.LENGTH_SHORT).show()
                     pokemonManager.downloadPokemon()
                 }
             }
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {App.pokemonDb.pokemonDao().nukeTable()}
         clearRecyclerView()
         pokemonManager.downloadPokemon()
-        Toast.makeText(applicationContext,"Downloading Gen $gen",Toast.LENGTH_SHORT).show()
+        Toast.makeText(applicationContext,getString(R.string.gen_change_toast, gen.toString()),Toast.LENGTH_SHORT).show()
     }
 
     private fun showAbout() {

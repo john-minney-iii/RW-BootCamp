@@ -4,12 +4,18 @@
     <string name="about_title">PokeDex App</string>
     <string name="about_message">Created by John Minney III</string>
     <string name="refresh">Refresh</string>
+    <string name="pokemon_sprite_description">Pokemon Sprite</string>
 
     <!--Generations-->
     <string name="gen_one">Gen 1</string>
     <string name="gen_two">Gen 2</string>
     <string name="gen_three">Gen 3</string>
     <string name="gen_four">Gen 4</string>
+
+    <!-- Toast Messages -->
+    <string name="downloading_toast">Downloading Pokemon…</string>
+    <string name="gen_change_toast">Downloading Gen %s</string>
+    <string name="refresh_toast">"Synchronizing Pokemon…"</string>
 
 
 </resources>

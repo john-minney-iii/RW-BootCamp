@@ -7,6 +7,7 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.minneydev.pokedex.App
 import com.minneydev.pokedex.MainActivity
+import com.minneydev.pokedex.R
 import com.minneydev.pokedex.util.PokemonManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,7 +20,7 @@ class RefreshPokemonWorker(context: Context, workerParameters: WorkerParameters)
 
     override fun doWork(): Result {
         MainActivity.currentGen.value?.let {
-            Toast.makeText(applicationContext,"Synchronizing Pokemon...", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, R.string.refresh_toast, Toast.LENGTH_SHORT).show()
             nukeDatabase()
             reDownloadPokemon(it)
             Result.success()
