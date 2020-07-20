@@ -24,8 +24,8 @@ class MainActivity : AppCompatActivity() {
         var currentGen: MutableLiveData<Int> = MutableLiveData()
         private val adapter = PokemonAdapter()
         fun setPokemon(pokemon: Pokemon) { adapter.setPokemon(pokemon) }
-
     }
+
     private val networkStatusChecker by lazy {
         NetworkStatusChecker(this.getSystemService(ConnectivityManager::class.java))
     }
