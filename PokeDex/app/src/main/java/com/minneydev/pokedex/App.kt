@@ -12,6 +12,8 @@ class App : Application() {
         private lateinit var instance: App
         const val BASE_URL = "https://pokeapi.co/api/v2/"
         const val TAG = "PokeDex"
+        const val DOWNLOAD_WORKER = "DOWNLOAD"
+        const val REFRESH_WORKER = "REFRESH"
         const val NUM_POKEMON = 151
         private val apiService by lazy { buildApiService() }
         val pokemonApi by lazy { PokemonApi(apiService) }

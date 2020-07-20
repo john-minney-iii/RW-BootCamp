@@ -2,6 +2,7 @@ package com.minneydev.pokedex.worker
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.minneydev.pokedex.App
@@ -17,9 +18,13 @@ class RefreshPokemonWorker(context: Context, workerParameters: WorkerParameters)
     private val pokemonManager by lazy { PokemonManager() }
 
     override fun doWork(): Result {
-        nukeDatabase()
-        reDownloadPokemon(MainActivity.currentGen)
-        return Result.success()
+        MainActivity.currentGen.value?.let {
+            Toast.makeText(applicationContext,"Synchronizing Pokemon...", Toast.LENGTH_SHORT).show()
+            nukeDatabase()
+            reDownloadPokemon(it)
+            Result.success()
+        }
+        return Result.failure()
     }
 
     private fun nukeDatabase() {

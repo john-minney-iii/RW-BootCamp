@@ -1,7 +1,13 @@
 package com.minneydev.pokedex.util
 
+
+import android.content.Context
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.work.*
 import com.minneydev.pokedex.App
+import com.minneydev.pokedex.MainActivity
 import com.minneydev.pokedex.model.pokemon.ApiPokemon
 import com.minneydev.pokedex.model.pokemon.Pokemon
 import com.minneydev.pokedex.worker.DownloadPokemonWorker
@@ -50,7 +56,7 @@ class PokemonManager {
             .build()
 
         val refreshManager = WorkManager.getInstance(App.getAppContext())
-        refreshManager.enqueueUniquePeriodicWork("REFRESH",
+        refreshManager.enqueueUniquePeriodicWork(App.REFRESH_WORKER,
             ExistingPeriodicWorkPolicy.REPLACE, periodicRefresh)
 
     }
@@ -67,8 +73,9 @@ class PokemonManager {
             .build()
 
         val workManager = WorkManager.getInstance(App.getAppContext())
-        workManager.enqueueUniqueWork("DOWNLOAD",
-            ExistingWorkPolicy.APPEND, downloadRequest)
+        workManager.enqueueUniqueWork(App.DOWNLOAD_WORKER,
+            ExistingWorkPolicy.REPLACE, downloadRequest)
+
     }
 
 }

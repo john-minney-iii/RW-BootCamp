@@ -2,6 +2,7 @@ package com.minneydev.pokedex.worker
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.minneydev.pokedex.App
@@ -15,8 +16,11 @@ class DownloadPokemonWorker(context: Context, workerParameters: WorkerParameters
     private val pokemonManager by lazy { PokemonManager() }
 
     override fun doWork(): Result {
-        downloadPokemon(MainActivity.currentGen)
-        return Result.success()
+        MainActivity.currentGen.value?.let {
+            downloadPokemon(it)
+            Result.success()
+        }
+        return Result.failure()
     }
 
     private fun downloadPokemon(gen: Int) {
