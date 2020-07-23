@@ -7,15 +7,20 @@ import androidx.work.WorkerParameters
 import com.minneydev.pokedex.App
 import com.minneydev.pokedex.MainActivity
 import com.minneydev.pokedex.util.PokemonManager
+import com.minneydev.pokedex.util.PokemonManager.Companion.currentGen
 import kotlinx.coroutines.*
 
 class DownloadPokemonWorker(context: Context, workerParameters: WorkerParameters) :
                     Worker(context, workerParameters) {
 
     private val pokemonManager by lazy { PokemonManager() }
+    private val firstGenRange = 1..151
+    private val secondGenRange = 152..251
+    private val thirdGenRange = 252..386
+    private val fourthGenRange = 387..494
 
     override fun doWork(): Result {
-        MainActivity.currentGen.value?.let {
+        currentGen.let {
             downloadPokemon(it)
             Result.success()
         }
@@ -24,11 +29,11 @@ class DownloadPokemonWorker(context: Context, workerParameters: WorkerParameters
 
     private fun downloadPokemon(gen: Int) {
         val range = when (gen) {
-            1 -> 1..151
-            2 -> 152..251
-            3 -> 252..386
-            4 -> 387..494
-            else -> 1..151
+            1 -> firstGenRange
+            2 -> secondGenRange
+            3 -> thirdGenRange
+            4 -> fourthGenRange
+            else -> firstGenRange
         }
         CoroutineScope(Dispatchers.Main).launch {
             for (i in range) {

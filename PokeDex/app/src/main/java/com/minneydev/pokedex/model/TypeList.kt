@@ -2,10 +2,10 @@ package com.minneydev.pokedex.model
 
 import com.squareup.moshi.Json
 
-class Type(
-    @field:Json(name="type") val type: Type2
+class TypeList(
+    @field:Json(name="type") val type: MainType
 )
 
 
-class Type2(
+class MainType(
     @field:Json(name="name") val name: String)

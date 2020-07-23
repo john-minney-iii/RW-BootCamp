@@ -9,9 +9,11 @@ import com.minneydev.pokedex.App
 import com.minneydev.pokedex.MainActivity
 import com.minneydev.pokedex.R
 import com.minneydev.pokedex.util.PokemonManager
+import com.minneydev.pokedex.util.PokemonManager.Companion.currentGen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class RefreshPokemonWorker(context: Context, workerParameters: WorkerParameters) :
                            Worker(context, workerParameters) {
@@ -19,7 +21,7 @@ class RefreshPokemonWorker(context: Context, workerParameters: WorkerParameters)
     private val pokemonManager by lazy { PokemonManager() }
 
     override fun doWork(): Result {
-        MainActivity.currentGen.value?.let {
+        currentGen.let {
             Toast.makeText(applicationContext, R.string.refresh_toast, Toast.LENGTH_SHORT).show()
             nukeDatabase()
             reDownloadPokemon(it)

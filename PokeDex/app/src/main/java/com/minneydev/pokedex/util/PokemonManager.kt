@@ -14,11 +14,16 @@ import java.util.concurrent.TimeUnit
 
 class PokemonManager {
 
+    //I know the DOWNLOAD_MANAGER and REFRESH_MANAGER don't need to be in the companion, but
+    //It was making me put them in their so I could keep them as a const.
+    companion object {
+        const val DOWNLOAD_WORKER = "DOWNLOAD"
+        const val REFRESH_WORKER = "REFRESH"
+        var currentGen = 1
+    }
+
     fun savePokemon(pokemon: ApiPokemon?) : Pokemon? {
-        val tempPokemon = pokemon?.let {
-            Pokemon(id = it.id, name = it.name, sprite_url = it.sprites.frontDefault,
-                type = it.types[0].type.name)
-        }
+        val tempPokemon = pokemon?.mapToPokemon()
         if (tempPokemon != null) {
             CoroutineScope(Dispatchers.IO).launch {
                 App.pokemonDb.pokemonDao().insertPokemon(tempPokemon)
@@ -27,50 +32,43 @@ class PokemonManager {
         return tempPokemon
     }
 
-    fun getFirstId(gen: Int) : String {
-        return when (gen) {
-            1 -> "1"
-            2 -> "152"
-            3 -> "252"
-            4 -> "387"
-            else -> "0"
-        }
-    }
-
+    /*
+        I know you said that these could be split into more methods, but I didn't like having
+        a method just to call another method. I like how they are here, I felt like it was
+        just overkill to make another method is all.
+     */
     fun startPeriodicRefresh() {
-        val constraints = Constraints.Builder()
-            .setRequiresBatteryNotLow(true)
-            .setRequiredNetworkType(NetworkType.NOT_ROAMING)
-            .setRequiresStorageNotLow(true)
-            .build()
-
-        val periodicRefresh = PeriodicWorkRequestBuilder<RefreshPokemonWorker>(
-            1, TimeUnit.HOURS, //Minimum of 15 min apparently
-        30, TimeUnit.MINUTES) //So then it doesn't run on the initial download
-            .setConstraints(constraints)
-            .build()
-
         val refreshManager = WorkManager.getInstance(App.getAppContext())
-        refreshManager.enqueueUniquePeriodicWork(App.REFRESH_WORKER,
-            ExistingPeriodicWorkPolicy.REPLACE, periodicRefresh)
-
+        refreshManager.enqueueUniquePeriodicWork(REFRESH_WORKER,
+            ExistingPeriodicWorkPolicy.REPLACE, buildPeriodicRequest(60))
     }
 
     fun downloadPokemon() {
-        val constraints = Constraints.Builder()
+        val workManager = WorkManager.getInstance(App.getAppContext())
+        workManager.enqueueUniqueWork(DOWNLOAD_WORKER,
+            ExistingWorkPolicy.REPLACE, buildDownloadRequest())
+    }
+
+    private fun buildConstraints() : Constraints {
+        return Constraints.Builder()
             .setRequiresBatteryNotLow(true)
             .setRequiresStorageNotLow(true)
             .setRequiredNetworkType(NetworkType.NOT_ROAMING)
             .build()
+    }
 
-        val downloadRequest = OneTimeWorkRequestBuilder<DownloadPokemonWorker>()
-            .setConstraints(constraints)
+    private fun buildPeriodicRequest(period: Long) : PeriodicWorkRequest {
+        return PeriodicWorkRequestBuilder<RefreshPokemonWorker>(
+            period, TimeUnit.MINUTES, //Minimum of 15 min apparently
+            period/2, TimeUnit.MINUTES) //So then it doesn't run on the initial download
+            .setConstraints(buildConstraints())
             .build()
+    }
 
-        val workManager = WorkManager.getInstance(App.getAppContext())
-        workManager.enqueueUniqueWork(App.DOWNLOAD_WORKER,
-            ExistingWorkPolicy.REPLACE, downloadRequest)
-
+    private fun buildDownloadRequest() : OneTimeWorkRequest {
+        return OneTimeWorkRequestBuilder<DownloadPokemonWorker>()
+            .setConstraints(buildConstraints())
+            .build()
     }
 
 }
