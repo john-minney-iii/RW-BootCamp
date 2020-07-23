@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Card Dimens -->
+    <dimen name="card_layout_margin">5dp</dimen>
+    <dimen name="card_imageview_margin_top">5dp</dimen>
+    <dimen name="card_text_marginStart">50dp</dimen>
+    <dimen name="card_text_marginTop">20dp</dimen>
+    <dimen name="card_text_marginEnd">50dp</dimen>
+    <dimen name="card_text_marginBottom">100dp</dimen>
+    <dimen name="card_text_size">24sp</dimen>
+
+    <!-- Activity Main -->
+    <dimen name="recycler_view_margin">16dp</dimen>
+
+
+
+</resources>
