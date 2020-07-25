@@ -13,6 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.minneydev.pokedex.model.pokemon.Pokemon
 import com.minneydev.pokedex.networking.NetworkStatusChecker
+import com.minneydev.pokedex.repository.PokemonRepository
 import com.minneydev.pokedex.ui.PokemonAdapter
 import com.minneydev.pokedex.util.PokemonManager
 import com.minneydev.pokedex.util.PokemonManager.Companion.currentGen
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         NetworkStatusChecker(this.getSystemService(ConnectivityManager::class.java))
     }
     private val pokemonManager by lazy { PokemonManager() }
+    private val pokemonRepository by lazy { PokemonRepository() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +46,7 @@ class MainActivity : AppCompatActivity() {
     //On Create Code -------------------------------------------------------------------------------
     private fun configurePokemonList() {
         lifecycleScope.launch {
-            val pokemonList: List<Pokemon> = App.pokemonDb.pokemonDao().getAllPokemon()
+            val pokemonList: List<Pokemon> = pokemonRepository.fetchAllPokemon()
             pokemonList.forEach { Log.d(App.TAG, "$it") }
             if (!workWithPokemonList(pokemonList)) { fetchPokemon() }
         }
@@ -87,7 +89,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun nukeDataBase() {
-        lifecycleScope.launch {App.pokemonDb.pokemonDao().nukeTable()}
+        lifecycleScope.launch {pokemonRepository.nukeDatabase()}
     }
 
     private fun downloadPokemon() {

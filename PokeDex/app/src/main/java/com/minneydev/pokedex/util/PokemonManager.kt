@@ -15,21 +15,11 @@ import java.util.concurrent.TimeUnit
 class PokemonManager {
 
     //I know the DOWNLOAD_MANAGER and REFRESH_MANAGER don't need to be in the companion, but
-    //It was making me put them in their so I could keep them as a const.
+    //It was making me put them in there so I could keep them as a const.
     companion object {
         const val DOWNLOAD_WORKER = "DOWNLOAD"
         const val REFRESH_WORKER = "REFRESH"
         var currentGen = 1
-    }
-
-    fun savePokemon(pokemon: ApiPokemon?) : Pokemon? {
-        val tempPokemon = pokemon?.mapToPokemon()
-        if (tempPokemon != null) {
-            CoroutineScope(Dispatchers.IO).launch {
-                App.pokemonDb.pokemonDao().insertPokemon(tempPokemon)
-            }
-        }
-        return tempPokemon
     }
 
     /*

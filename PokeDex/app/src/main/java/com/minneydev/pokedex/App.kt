@@ -11,8 +11,6 @@ class App : Application() {
     companion object {
         private lateinit var instance: App
         const val TAG = "PokeDex"
-        private val apiService by lazy { buildApiService() }
-        val pokemonApi by lazy { PokemonApi(apiService) }
         lateinit var pokemonDb: PokemonDatabase
         fun getAppContext() = instance
     }
@@ -23,9 +21,8 @@ class App : Application() {
         pokemonDb = Room.databaseBuilder(
             applicationContext,
             PokemonDatabase::class.java,
-            "pokemon-database"
-        ).build()
-
+            "pokemon-database")
+            .build()
     }
 
 }
