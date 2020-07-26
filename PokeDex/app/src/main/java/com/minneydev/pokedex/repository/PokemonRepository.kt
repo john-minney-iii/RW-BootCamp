@@ -9,10 +9,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * Does all the talking between the [PokemonApi] and the [PokemonDatabase]
+ */
+
 class PokemonRepository {
 
     private val apiService by lazy { buildApiService() }
-    val pokemonApi by lazy { PokemonApi(apiService) }
+    private val pokemonApi by lazy { PokemonApi(apiService) }
 
 
     fun savePokemon(pokemon: ApiPokemon?) : Pokemon? {
@@ -32,7 +36,7 @@ class PokemonRepository {
     }
 
     suspend fun fetchPokemonById(id: String) : ApiPokemon? {
-        return pokemonApi.fetchPokemonById("$id")
+        return pokemonApi.fetchPokemonById(id)
     }
 
     suspend fun fetchAllPokemon() : List<Pokemon> {

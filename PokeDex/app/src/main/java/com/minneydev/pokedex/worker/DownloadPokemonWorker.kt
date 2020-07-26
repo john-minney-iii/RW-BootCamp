@@ -4,12 +4,12 @@ import android.content.Context
 import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.minneydev.pokedex.App
 import com.minneydev.pokedex.MainActivity
 import com.minneydev.pokedex.repository.PokemonRepository
-import com.minneydev.pokedex.util.PokemonManager
 import com.minneydev.pokedex.util.PokemonManager.Companion.currentGen
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class DownloadPokemonWorker(context: Context, workerParameters: WorkerParameters) :
                     Worker(context, workerParameters) {

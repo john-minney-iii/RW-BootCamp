@@ -6,6 +6,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.minneydev.pokedex.R
 import com.minneydev.pokedex.model.pokemon.Pokemon
 
+/**
+ * Adapter for [R.id.pokemonRecyclerView]
+ */
+
 class PokemonAdapter() : RecyclerView.Adapter<PokemonHolder>() {
 
     private val pokeSet = mutableSetOf<Pokemon>()

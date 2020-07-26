@@ -2,8 +2,6 @@ package com.minneydev.pokedex
 
 import android.app.Application
 import androidx.room.Room
-import com.minneydev.pokedex.networking.PokemonApi
-import com.minneydev.pokedex.networking.buildApiService
 import com.minneydev.pokedex.savePokemonData.PokemonDatabase
 
 class App : Application() {

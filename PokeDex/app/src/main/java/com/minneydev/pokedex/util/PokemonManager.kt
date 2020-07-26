@@ -3,14 +3,13 @@ package com.minneydev.pokedex.util
 
 import androidx.work.*
 import com.minneydev.pokedex.App
-import com.minneydev.pokedex.model.pokemon.ApiPokemon
-import com.minneydev.pokedex.model.pokemon.Pokemon
 import com.minneydev.pokedex.worker.DownloadPokemonWorker
 import com.minneydev.pokedex.worker.RefreshPokemonWorker
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
+
+/**
+ * Manager to start up the Workers and hold the Current Generation
+ */
 
 class PokemonManager {
 
