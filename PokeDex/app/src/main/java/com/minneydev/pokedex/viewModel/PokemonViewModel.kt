@@ -13,12 +13,13 @@ import com.minneydev.pokedex.util.PokemonManager.Companion.currentGen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.core.KoinComponent
 
 /**
  * ViewModel for [MainActivity]
  */
 
-class PokemonViewModel : ViewModel() {
+class PokemonViewModel : ViewModel(), KoinComponent {
 
     private val pokemonRepository by lazy { PokemonRepository() }
     private val pokemonManager by lazy { PokemonManager() }
