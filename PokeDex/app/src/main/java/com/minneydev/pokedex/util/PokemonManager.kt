@@ -3,33 +3,22 @@ package com.minneydev.pokedex.util
 
 import androidx.work.*
 import com.minneydev.pokedex.App
-import com.minneydev.pokedex.model.pokemon.ApiPokemon
-import com.minneydev.pokedex.model.pokemon.Pokemon
 import com.minneydev.pokedex.worker.DownloadPokemonWorker
 import com.minneydev.pokedex.worker.RefreshPokemonWorker
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
+
+/**
+ * Manager to start up the Workers and hold the Current Generation
+ */
 
 class PokemonManager {
 
     //I know the DOWNLOAD_MANAGER and REFRESH_MANAGER don't need to be in the companion, but
-    //It was making me put them in their so I could keep them as a const.
+    //It was making me put them in there so I could keep them as a const.
     companion object {
         const val DOWNLOAD_WORKER = "DOWNLOAD"
         const val REFRESH_WORKER = "REFRESH"
         var currentGen = 1
-    }
-
-    fun savePokemon(pokemon: ApiPokemon?) : Pokemon? {
-        val tempPokemon = pokemon?.mapToPokemon()
-        if (tempPokemon != null) {
-            CoroutineScope(Dispatchers.IO).launch {
-                App.pokemonDb.pokemonDao().insertPokemon(tempPokemon)
-            }
-        }
-        return tempPokemon
     }
 
     /*

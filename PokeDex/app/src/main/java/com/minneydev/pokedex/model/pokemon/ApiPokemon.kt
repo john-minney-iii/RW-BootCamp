@@ -5,6 +5,10 @@ import com.minneydev.pokedex.model.SpriteSet
 import com.minneydev.pokedex.model.TypeList
 import com.squareup.moshi.Json
 
+/**
+ * Model that is fetched from the [networking.PokemonApi]
+ */
+
 data class ApiPokemon(
     @field:Json(name="id") val id: String = "",
     @field:Json(name="name") val name: String = "",

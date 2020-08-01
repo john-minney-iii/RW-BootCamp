@@ -4,6 +4,10 @@ package com.minneydev.pokedex.networking
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 
+/**
+ * Checks if there is an internet connection before making an API call
+ */
+
 class NetworkStatusChecker(private val connectivityManager: ConnectivityManager?) {
 
     inline fun performIfConnectedToInternet(action: () -> Unit) {

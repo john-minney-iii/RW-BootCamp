@@ -12,6 +12,10 @@ import com.minneydev.pokedex.App
 import com.minneydev.pokedex.R
 import com.minneydev.pokedex.model.pokemon.Pokemon
 
+/**
+ * ViewHolder for [R.id.pokemonRecyclerView]
+ */
+
 class PokemonHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
     private val pokemonName: TextView = view.findViewById(R.id.pokemonName)

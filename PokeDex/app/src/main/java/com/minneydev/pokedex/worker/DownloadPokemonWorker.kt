@@ -4,16 +4,17 @@ import android.content.Context
 import android.util.Log
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.minneydev.pokedex.App
 import com.minneydev.pokedex.MainActivity
-import com.minneydev.pokedex.util.PokemonManager
+import com.minneydev.pokedex.repository.PokemonRepository
 import com.minneydev.pokedex.util.PokemonManager.Companion.currentGen
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class DownloadPokemonWorker(context: Context, workerParameters: WorkerParameters) :
                     Worker(context, workerParameters) {
 
-    private val pokemonManager by lazy { PokemonManager() }
+    private val pokemonRepository by lazy { PokemonRepository() }
     private val firstGenRange = 1..151
     private val secondGenRange = 152..251
     private val thirdGenRange = 252..386
@@ -37,8 +38,8 @@ class DownloadPokemonWorker(context: Context, workerParameters: WorkerParameters
         }
         CoroutineScope(Dispatchers.Main).launch {
             for (i in range) {
-                with (App.pokemonApi.fetchPokemonById("$i")) {
-                    pokemonManager.savePokemon(this)?.let { pokemon ->
+                with (pokemonRepository.fetchPokemonById(i.toString())) {
+                    pokemonRepository.savePokemon(this)?.let { pokemon ->
                         MainActivity.setPokemon(pokemon)
                     }
                     Log.d("SAVING", "$i: ${this?.name}")

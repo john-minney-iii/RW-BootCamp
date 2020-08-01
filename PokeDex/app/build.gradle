@@ -75,4 +75,8 @@ dependencies {
     //Work Manager
     implementation 'androidx.work:work-runtime-ktx:2.3.4'
 
+    //Test
+    implementation "org.mockito:mockito-core:2.19.0"
+    testImplementation "android.arch.core:core-testing:1.1.1"
+
 }
