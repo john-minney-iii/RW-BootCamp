@@ -21,8 +21,6 @@ class App : Application() {
         private lateinit var instance: App
         const val TAG = "PokeDex"
         lateinit var pokemonDb: PokemonDatabase
-        val apiService by lazy { buildApiService() }
-        val pokemonApi by lazy { PokemonApi(apiService) }
         fun getAppContext() = instance
         val networkStatusChecker by lazy {
             NetworkStatusChecker(getAppContext().getSystemService(ConnectivityManager::class.java))
