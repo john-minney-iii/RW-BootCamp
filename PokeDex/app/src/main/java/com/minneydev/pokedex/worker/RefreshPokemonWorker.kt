@@ -2,11 +2,9 @@ package com.minneydev.pokedex.worker
 
 import android.content.Context
 import android.util.Log
-import android.widget.Toast
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.minneydev.pokedex.MainActivity
-import com.minneydev.pokedex.R
 import com.minneydev.pokedex.repository.PokemonRepository
 import com.minneydev.pokedex.util.PokemonManager.Companion.currentGen
 import kotlinx.coroutines.CoroutineScope

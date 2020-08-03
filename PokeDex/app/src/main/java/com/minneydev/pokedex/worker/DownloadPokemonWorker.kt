@@ -51,7 +51,6 @@ class DownloadPokemonWorker(context: Context, workerParameters: WorkerParameters
                     pokemonRepository.savePokemon(this)?.let { pokemon ->
                         MainActivity.setPokemon(pokemon)
                     }
-                    Log.d("SAVING", "$i: ${this?.name}")
                 }
             }
         }

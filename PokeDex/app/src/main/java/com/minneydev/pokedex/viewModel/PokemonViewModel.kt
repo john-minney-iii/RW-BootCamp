@@ -1,6 +1,5 @@
 package com.minneydev.pokedex.viewModel
 
-import android.util.Log //Import just for the Logs to see pokemon Downloading
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData //Ok android Import
 import androidx.lifecycle.ViewModel //Ok android import
@@ -37,7 +36,6 @@ class PokemonViewModel : ViewModel(), KoinComponent {
     private fun configurePokemonList() {
         CoroutineScope(Dispatchers.Main).launch {
             val pokemonList: List<Pokemon> = pokemonRepository.fetchAllPokemon()
-            pokemonList.forEach { Log.d(App.TAG, "$it") }
             if (pokemonList.isEmpty()) { fetchPokemon() }
             if (!workWithPokemonList(pokemonList)) { fetchPokemon() }
         }
@@ -62,10 +60,6 @@ class PokemonViewModel : ViewModel(), KoinComponent {
         nukeDatabase()
         allPokemon.value = emptyList()
         fetchPokemon()
-    }
-
-    fun clearPokemon() {
-        allPokemon.value = emptyList()
     }
 
     private fun nukeDatabase() = pokemonRepository.nukeDatabase()

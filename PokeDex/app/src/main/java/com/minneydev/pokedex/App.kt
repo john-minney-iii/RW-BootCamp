@@ -19,7 +19,6 @@ class App : Application() {
 
     companion object {
         private lateinit var instance: App
-        const val TAG = "PokeDex"
         lateinit var pokemonDb: PokemonDatabase
         fun getAppContext() = instance
         val networkStatusChecker by lazy {
