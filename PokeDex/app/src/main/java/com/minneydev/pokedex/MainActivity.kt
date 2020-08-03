@@ -21,6 +21,9 @@ class MainActivity : AppCompatActivity() {
         //The Adapter is in the CompObj just so the setPokemon() will work
         fun setPokemon(pokemon: Pokemon) { adapter.setPokemon(pokemon) }
         fun clearRecyclerView() { adapter.clear() }
+        fun refreshToast() {
+            Toast.makeText(App.getAppContext(), R.string.refresh_toast, Toast.LENGTH_SHORT).show()
+        }
     }
 
     lateinit var pokemonViewModel: PokemonViewModel

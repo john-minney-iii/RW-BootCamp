@@ -22,7 +22,7 @@ class RefreshPokemonWorker(context: Context, workerParameters: WorkerParameters)
 
     override fun doWork(): Result {
         currentGen.let {
-            Toast.makeText(applicationContext, R.string.refresh_toast, Toast.LENGTH_SHORT).show()
+            MainActivity.refreshToast()
             pokemonRepository.nukeDatabase()
             reDownloadPokemon(it)
             Result.success()
