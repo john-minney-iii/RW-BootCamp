@@ -12,11 +12,13 @@ import com.minneydev.pokedex.util.PokemonManager.Companion.currentGen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
 class RefreshPokemonWorker(context: Context, workerParameters: WorkerParameters) :
-                           Worker(context, workerParameters) {
+                           Worker(context, workerParameters), KoinComponent {
 
-    private val pokemonRepository by lazy { PokemonRepository() }
+    private val pokemonRepository: PokemonRepository by inject()
 
     override fun doWork(): Result {
         currentGen.let {

@@ -10,7 +10,7 @@ import com.minneydev.pokedex.model.pokemon.Pokemon
  * Adapter for [R.id.pokemonRecyclerView]
  */
 
-class PokemonAdapter() : RecyclerView.Adapter<PokemonHolder>() {
+class PokemonAdapter : RecyclerView.Adapter<PokemonHolder>() {
 
     private val pokeSet = mutableSetOf<Pokemon>()
 

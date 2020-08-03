@@ -5,7 +5,7 @@ import android.content.Context
 import android.view.LayoutInflater
 
 
-class ActivityRetriever(val defaultCurrentActivityListener: DefaultCurrentActivityListener) {
+class ActivityRetriever(private val defaultCurrentActivityListener: DefaultCurrentActivityListener) {
 
     val layoutInflater: LayoutInflater =
         LayoutInflater.from(defaultCurrentActivityListener.currentActivity)

@@ -14,6 +14,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
+import org.koin.core.inject
 
 /**
  * ViewModel for [MainActivity]
@@ -21,8 +22,8 @@ import org.koin.core.KoinComponent
 
 class PokemonViewModel : ViewModel(), KoinComponent {
 
-    private val pokemonRepository by lazy { PokemonRepository() }
-    private val pokemonManager by lazy { PokemonManager() }
+    private val pokemonRepository: PokemonRepository by inject()
+    private val pokemonManager: PokemonManager by inject()
     private val allPokemon = MutableLiveData<List<Pokemon>>()
     private val networkStatusChecker = App.networkStatusChecker
 
@@ -33,7 +34,7 @@ class PokemonViewModel : ViewModel(), KoinComponent {
 
     fun fetchPokemonList() : LiveData<List<Pokemon>> = allPokemon
 
-    fun configurePokemonList() {
+    private fun configurePokemonList() {
         CoroutineScope(Dispatchers.Main).launch {
             val pokemonList: List<Pokemon> = pokemonRepository.fetchAllPokemon()
             pokemonList.forEach { Log.d(App.TAG, "$it") }
@@ -61,6 +62,10 @@ class PokemonViewModel : ViewModel(), KoinComponent {
         nukeDatabase()
         allPokemon.value = emptyList()
         fetchPokemon()
+    }
+
+    fun clearPokemon() {
+        allPokemon.value = emptyList()
     }
 
     private fun nukeDatabase() = pokemonRepository.nukeDatabase()

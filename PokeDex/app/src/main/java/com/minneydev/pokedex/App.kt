@@ -5,9 +5,9 @@ import android.net.ConnectivityManager
 import androidx.room.Room
 import com.minneydev.pokedex.di.appModule
 import com.minneydev.pokedex.di.networkModule
+import com.minneydev.pokedex.di.pokemonManagerModule
+import com.minneydev.pokedex.di.repositoryModule
 import com.minneydev.pokedex.networking.NetworkStatusChecker
-import com.minneydev.pokedex.networking.PokemonApi
-import com.minneydev.pokedex.networking.buildApiService
 import com.minneydev.pokedex.savePokemonData.PokemonDatabase
 import com.minneydev.pokedex.util.DefaultCurrentActivityListener
 import org.koin.android.ext.android.inject
@@ -33,7 +33,7 @@ class App : Application() {
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(listOf(networkModule, appModule))
+            modules(listOf(networkModule, appModule, repositoryModule, pokemonManagerModule))
         }
         registerActivityLifecycleCallbacks(defaultCurrentActivityListener)
         instance = this

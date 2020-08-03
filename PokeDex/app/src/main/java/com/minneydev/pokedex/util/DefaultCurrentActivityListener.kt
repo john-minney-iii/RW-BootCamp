@@ -11,7 +11,8 @@ interface CurrentActivityListener {
 }
 
 /**
- * Since many have to implement this, then create a default class
+ * This Class and the [ActivityRetriever] were just in the videos. Not sure where to implement it
+ * to be honest
  */
 class DefaultCurrentActivityListener : Application.ActivityLifecycleCallbacks, CurrentActivityListener {
     override var currentActivity: Activity? = null

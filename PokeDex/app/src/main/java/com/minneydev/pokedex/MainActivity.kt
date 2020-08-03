@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         private val adapter = PokemonAdapter()
         //The Adapter is in the CompObj just so the setPokemon() will work
         fun setPokemon(pokemon: Pokemon) { adapter.setPokemon(pokemon) }
+        fun clearRecyclerView() { adapter.clear() }
     }
 
     lateinit var pokemonViewModel: PokemonViewModel
@@ -48,10 +49,6 @@ class MainActivity : AppCompatActivity() {
     /**
     Code to change [R.id.pokemonRecyclerView]
      */
-    private fun clearRecyclerView() {
-        adapter.clear()
-    }
-
     private fun putOnRecyclerView(pokemon: List<Pokemon>) {
         pokemon.forEach {
             adapter.setPokemon(it)
