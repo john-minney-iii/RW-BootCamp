@@ -10,11 +10,14 @@ import com.minneydev.pokedex.util.PokemonManager.Companion.currentGen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
 class DownloadPokemonWorker(context: Context, workerParameters: WorkerParameters) :
-                    Worker(context, workerParameters) {
+                    Worker(context, workerParameters), KoinComponent {
 
-    private val pokemonRepository by lazy { PokemonRepository() }
+//    private val pokemonRepository by lazy { PokemonRepository() }
+    private val pokemonRepository: PokemonRepository by inject()
     private val firstGenRange = 1..151
     private val secondGenRange = 152..251
     private val thirdGenRange = 252..386
@@ -26,6 +29,12 @@ class DownloadPokemonWorker(context: Context, workerParameters: WorkerParameters
             Result.success()
         }
         return Result.failure()
+    }
+
+    override fun onStopped() {
+        super.onStopped()
+        MainActivity.clearRecyclerView()
+        Log.d("WORKER-CANCELED", "Maybe?")
     }
 
     private fun downloadPokemon(gen: Int) {
@@ -42,7 +51,6 @@ class DownloadPokemonWorker(context: Context, workerParameters: WorkerParameters
                     pokemonRepository.savePokemon(this)?.let { pokemon ->
                         MainActivity.setPokemon(pokemon)
                     }
-                    Log.d("SAVING", "$i: ${this?.name}")
                 }
             }
         }
