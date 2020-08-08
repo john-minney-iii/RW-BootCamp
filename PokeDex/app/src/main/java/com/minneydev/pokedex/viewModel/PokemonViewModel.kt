@@ -1,30 +1,30 @@
 package com.minneydev.pokedex.viewModel
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData //Ok android Import
-import androidx.lifecycle.ViewModel //Ok android import
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.minneydev.pokedex.App
 import com.minneydev.pokedex.MainActivity
 import com.minneydev.pokedex.model.pokemon.Pokemon
+import com.minneydev.pokedex.networking.NetworkStatusChecker
 import com.minneydev.pokedex.repository.PokemonRepository
 import com.minneydev.pokedex.util.PokemonManager
 import com.minneydev.pokedex.util.PokemonManager.Companion.currentGen
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.koin.core.KoinComponent
-import org.koin.core.inject
 
 /**
  * ViewModel for [MainActivity]
  */
 
-class PokemonViewModel : ViewModel(), KoinComponent {
+class PokemonViewModel(
+    private val pokemonRepository: PokemonRepository,
+    private val pokemonManager: PokemonManager,
+    private val networkStatusChecker: NetworkStatusChecker
+) : ViewModel() {
 
-    private val pokemonRepository: PokemonRepository by inject()
-    private val pokemonManager: PokemonManager by inject()
     private val allPokemon = MutableLiveData<List<Pokemon>>()
-    private val networkStatusChecker = App.networkStatusChecker
 
     init {
         configurePokemonList()
@@ -49,7 +49,7 @@ class PokemonViewModel : ViewModel(), KoinComponent {
         return false
     }
 
-    fun fetchPokemon() {
+    private fun fetchPokemon() {
         networkStatusChecker.performIfConnectedToInternet {
             pokemonManager.downloadPokemon()
         }

@@ -12,26 +12,29 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.minneydev.pokedex.model.pokemon.Pokemon
 import com.minneydev.pokedex.ui.PokemonAdapter
 import com.minneydev.pokedex.viewModel.PokemonViewModel
+import com.minneydev.pokedex.viewModel.PokemonViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.core.KoinComponent
+import org.koin.core.get
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), KoinComponent {
 
     companion object {
         private val adapter = PokemonAdapter()
         //The Adapter is in the CompObj just so the setPokemon() will work
         fun setPokemon(pokemon: Pokemon) { adapter.setPokemon(pokemon) }
         fun clearRecyclerView() { adapter.clear() }
-        fun refreshToast() {
-            Toast.makeText(App.getAppContext(), R.string.refresh_toast, Toast.LENGTH_SHORT).show()
-        }
     }
 
-    lateinit var pokemonViewModel: PokemonViewModel
+    private lateinit var pokemonViewModel: PokemonViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        pokemonViewModel = ViewModelProviders.of(this).get(PokemonViewModel::class.java)
+        pokemonViewModel = ViewModelProviders.of(this,
+            PokemonViewModelFactory(get(), get(), get())
+        )
+            .get(PokemonViewModel::class.java)
         pokemonRecyclerView.layoutManager = LinearLayoutManager(this)
         observePokemon()
         pokemonRecyclerView.adapter = adapter

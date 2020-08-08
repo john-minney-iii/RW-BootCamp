@@ -7,13 +7,11 @@ import org.koin.dsl.module
 val repositoryModule = module {
 
     single {
-        val pokemonApi = PokemonApi(get())
-        pokemonApi
+        PokemonApi(get())
     }
 
     single {
-        val pokemonRepository = PokemonRepository(get())
-        pokemonRepository
+        PokemonRepository(get(), get())
     }
 
 }

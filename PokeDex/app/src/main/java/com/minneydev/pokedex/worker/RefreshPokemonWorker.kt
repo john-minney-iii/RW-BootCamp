@@ -2,9 +2,11 @@ package com.minneydev.pokedex.worker
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.minneydev.pokedex.MainActivity
+import com.minneydev.pokedex.R
 import com.minneydev.pokedex.repository.PokemonRepository
 import com.minneydev.pokedex.util.PokemonManager.Companion.currentGen
 import kotlinx.coroutines.CoroutineScope
@@ -20,7 +22,7 @@ class RefreshPokemonWorker(context: Context, workerParameters: WorkerParameters)
 
     override fun doWork(): Result {
         currentGen.let {
-            MainActivity.refreshToast()
+            Toast.makeText(applicationContext, R.string.refresh_toast, Toast.LENGTH_SHORT).show()
             pokemonRepository.nukeDatabase()
             reDownloadPokemon(it)
             Result.success()

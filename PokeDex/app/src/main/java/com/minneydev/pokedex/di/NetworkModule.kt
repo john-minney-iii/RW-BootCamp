@@ -17,9 +17,9 @@ val networkModule = module {
     }
 
     single {
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-        interceptor
+        HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
     }
 
     single {
@@ -31,9 +31,15 @@ val networkModule = module {
         client.build()
     }
 
+    single (named("moshi_conv_factory")){
+        MoshiConverterFactory.create().asLenient()
+    }
+
     single {
-        Retrofit.Builder().baseUrl(get<String>(named("BASE_URL")))
-            .addConverterFactory(MoshiConverterFactory.create().asLenient())
+        Retrofit.Builder()
+            .client(get())
+            .baseUrl(get<String>(named("BASE_URL")))
+            .addConverterFactory(get(named("moshi_conv_factory")))
             .client(get())
             .build()
     }
@@ -43,3 +49,21 @@ val networkModule = module {
     }
 
 }
+
+/*
+
+fun buildClient(): OkHttpClient =
+    OkHttpClient.Builder()
+        .build()
+
+fun buildRetrofit(): Retrofit {
+    return Retrofit.Builder()
+        .client(buildClient())
+        .baseUrl(BASE_URL)
+        .addConverterFactory(MoshiConverterFactory.create().asLenient())
+        .build()
+}
+
+fun buildApiService(): PokemonApiService =
+    buildRetrofit().create(PokemonApiService::class.java)
+ */

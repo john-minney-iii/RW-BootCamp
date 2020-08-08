@@ -6,8 +6,7 @@ import org.koin.dsl.module
 val pokemonManagerModule = module {
 
     single {
-        val pokemonManager = PokemonManager()
-        pokemonManager
+        PokemonManager()
     }
 
 }
