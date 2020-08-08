@@ -18,8 +18,9 @@ data class ApiPokemon(
 {
 
     fun mapToPokemon() : Pokemon {
-        return Pokemon(id = id, name = name, sprite_url = sprites.frontDefault,
-            type = types[0].type.name)
+        return Pokemon(id = id, name = name, front_sprite_url = sprites.frontDefault,
+            back_sprite_url = sprites.backDefault, front_shiny_url = sprites.frontShiny,
+            back_shiny_url = sprites.backShiny, type = types[0].type.name)
     }
 
 
