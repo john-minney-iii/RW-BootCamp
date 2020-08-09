@@ -1,5 +1,6 @@
 package com.minneydev.pokedex
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -20,7 +21,7 @@ import org.koin.core.get
 class MainActivity : AppCompatActivity(), KoinComponent {
 
     companion object {
-        private val adapter = PokemonAdapter()
+        private lateinit var adapter: PokemonAdapter
         //The Adapter is in the CompObj just so the setPokemon() will work
         fun setPokemon(pokemon: Pokemon) { adapter.setPokemon(pokemon) }
         fun clearRecyclerView() { adapter.clear() }
@@ -31,6 +32,9 @@ class MainActivity : AppCompatActivity(), KoinComponent {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        adapter = PokemonAdapter {
+            showDetailActivity(it)
+        }
         pokemonViewModel = ViewModelProviders.of(this,
             PokemonViewModelFactory(get(), get(), get())
         )
@@ -99,5 +103,12 @@ class MainActivity : AppCompatActivity(), KoinComponent {
                 .setMessage(R.string.about_message)
                 .create().show()
     }
+
+    private fun showDetailActivity(pokemon: Pokemon) {
+        val intent = Intent(this, DetailActivity::class.java)
+        intent.putExtra("POKEMON", pokemon)
+        startActivity(intent)
+    }
+
 
 }

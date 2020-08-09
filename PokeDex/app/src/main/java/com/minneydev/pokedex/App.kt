@@ -1,9 +1,11 @@
 package com.minneydev.pokedex
 
 import android.app.Application
+import android.content.Intent
 import android.net.ConnectivityManager
 import androidx.room.Room
 import com.minneydev.pokedex.di.*
+import com.minneydev.pokedex.model.pokemon.Pokemon
 import com.minneydev.pokedex.networking.NetworkStatusChecker
 import com.minneydev.pokedex.savePokemonData.PokemonDatabase
 import org.koin.android.ext.koin.androidContext
@@ -15,6 +17,10 @@ class App : Application() {
     companion object {
         private lateinit var instance: App
         fun getAppContext() = instance
+
+        fun showDetailActivity(pokemon: Pokemon) {
+
+        }
     }
 
     override fun onCreate() {
