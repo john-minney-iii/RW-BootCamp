@@ -108,6 +108,12 @@ class MainActivity : AppCompatActivity(), KoinComponent {
         val intent = Intent(this, DetailActivity::class.java)
         intent.putExtra("POKEMON", pokemon)
         startActivity(intent)
+        animateTransition()
+    }
+
+    private fun animateTransition() {
+        overridePendingTransition(R.anim.slide_in_left,
+            R.anim.slide_out_right);
     }
 
 

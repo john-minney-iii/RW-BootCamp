@@ -17,10 +17,6 @@ class App : Application() {
     companion object {
         private lateinit var instance: App
         fun getAppContext() = instance
-
-        fun showDetailActivity(pokemon: Pokemon) {
-
-        }
     }
 
     override fun onCreate() {

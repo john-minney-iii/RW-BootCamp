@@ -22,17 +22,17 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        overridePendingTransition(R.anim.slide_in_right,
+            R.anim.slide_out_left)
+    }
+
     private fun initBackgroundColor(type: String) {
         detailCardView.setCardBackgroundColor(
             ContextCompat.getColor(this, getTypeColor(type))
         )
     }
-
-    /*
-    pokemonLL.setBackgroundColor(
-            ContextCompat.getColor(App.getAppContext(), typeColor)
-        )
-     */
 
     private fun initView(pokemon: Pokemon) {
         pokemonNameTextView.text = pokemon.name.capitalize()
