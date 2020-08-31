@@ -2,6 +2,7 @@ package com.minneydev.pokedex.model.pokemon
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 /**
  * Pokemon Being Saved into [PokemonDatabase]
@@ -10,5 +11,8 @@ import androidx.room.PrimaryKey
 data class Pokemon(
     @PrimaryKey val id: String = "",
     val name: String = "",
-    val sprite_url: String = "",
-    val type: String = "")
+    val front_sprite_url: String = "",
+    val back_sprite_url: String = "",
+    val front_shiny_url: String = "",
+    val back_shiny_url: String = "",
+    val type: String = "") : Serializable

@@ -27,7 +27,7 @@ class PokemonHolder(private val view: View) : RecyclerView.ViewHolder(view) {
             ContextCompat.getColor(App.getAppContext(), typeColor)
         )
         pokemonName.text = pokemon.name.capitalize()
-        Glide.with(view).load(pokemon.sprite_url)
+        Glide.with(view).load(pokemon.front_sprite_url)
             .apply(RequestOptions().override(500, 500).fitCenter())
             .into(pokemonSprite)
     }

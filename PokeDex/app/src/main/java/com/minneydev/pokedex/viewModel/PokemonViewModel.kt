@@ -1,9 +1,11 @@
 package com.minneydev.pokedex.viewModel
 
+import android.content.Intent
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.minneydev.pokedex.App
+import com.minneydev.pokedex.DetailActivity
 import com.minneydev.pokedex.MainActivity
 import com.minneydev.pokedex.model.pokemon.Pokemon
 import com.minneydev.pokedex.networking.NetworkStatusChecker
@@ -63,5 +65,9 @@ class PokemonViewModel(
     }
 
     private fun nukeDatabase() = pokemonRepository.nukeDatabase()
+
+    fun getFirstPokemon() : Pokemon? {
+        return allPokemon.value?.get(0)
+    }
 
 }

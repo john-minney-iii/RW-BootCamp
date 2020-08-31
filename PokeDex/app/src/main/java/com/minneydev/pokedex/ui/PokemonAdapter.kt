@@ -10,7 +10,9 @@ import com.minneydev.pokedex.model.pokemon.Pokemon
  * Adapter for [R.id.pokemonRecyclerView]
  */
 
-class PokemonAdapter : RecyclerView.Adapter<PokemonHolder>() {
+class PokemonAdapter(
+    private val listener: (Pokemon) -> Unit
+) : RecyclerView.Adapter<PokemonHolder>() {
 
     private val pokeSet = mutableSetOf<Pokemon>()
 
@@ -25,6 +27,7 @@ class PokemonAdapter : RecyclerView.Adapter<PokemonHolder>() {
     override fun onBindViewHolder(holder: PokemonHolder, position: Int) {
         val currentPokemon = pokeSet.elementAt(position)
         holder.bindPokemon(currentPokemon, getTypeColor(currentPokemon.type))
+        holder.itemView.setOnClickListener { listener(currentPokemon) }
     }
 
     fun setPokemon(pokemon: Pokemon?) {
